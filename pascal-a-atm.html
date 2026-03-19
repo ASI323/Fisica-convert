@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Convertir Pascal a Atmósfera (atm) — Calculadora Online + Fórmula</title>
+<meta name="description" content="Convertí Pascal a atmósfera al instante. Fórmula: atm = Pa ÷ 101325. Calculadora gratuita con ejemplos y tabla de conversión en español para física y química.">
+<link rel="canonical" href="https://fisicaconvert.com/convertir/pascal-a-atm/">
+<meta property="og:title" content="Convertir Pascal a Atmósfera — Calculadora Online + Fórmula">
+<meta property="og:description" content="atm = Pa ÷ 101325. Calculadora gratuita con fórmula explicada, ejemplos y tabla de conversión.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://fisicaconvert.com/convertir/pascal-a-atm/">
+<meta property="og:locale" content="es_AR">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://fisicaconvert.com/convertir/pascal-a-atm/",
+      "url": "https://fisicaconvert.com/convertir/pascal-a-atm/",
+      "name": "Convertir Pascal a Atmósfera — Calculadora Online + Fórmula",
+      "inLanguage": "es",
+      "breadcrumb": { "@id": "#breadcrumb" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://fisicaconvert.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Presión", "item": "https://fisicaconvert.com/presion/" },
+        { "@type": "ListItem", "position": 3, "name": "Pascal a atmósfera" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Cuántos Pascal equivalen a 1 atmósfera?",
+          "acceptedAnswer": { "@type": "Answer", "text": "1 atmósfera estándar (atm) equivale exactamente a 101 325 Pascal (Pa). Este valor está definido internacionalmente y representa la presión media del aire al nivel del mar." }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuál es la fórmula para convertir Pascal a atmósfera?",
+          "acceptedAnswer": { "@type": "Answer", "text": "La fórmula es atm = Pa ÷ 101325. Para la conversión inversa: Pa = atm × 101325." }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuánto es 1 atm en bar?",
+          "acceptedAnswer": { "@type": "Answer", "text": "1 atm = 1.01325 bar. Ambas unidades son muy cercanas pero no idénticas." }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué es el Pascal?",
+          "acceptedAnswer": { "@type": "Answer", "text": "El Pascal (Pa) es la unidad de presión del Sistema Internacional (SI). Se define como 1 Newton por metro cuadrado (N/m²). Es una unidad relativamente pequeña, por eso en la práctica se usan kilopascales (kPa) o megapascales (MPa)." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Sora:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --bg: #0a0e1a; --surface: #111827; --surface2: #1a2235; --border: rgba(255,255,255,0.08); --border-strong: rgba(255,255,255,0.16); --text: #f0f4ff; --text-muted: #8899bb; --text-dim: #4a5980; --accent: #38bdf8; --accent-dim: rgba(56,189,248,0.12); --green: #34d399; --mono: 'IBM Plex Mono', monospace; --sans: 'Sora', sans-serif; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); background: var(--bg); color: var(--text); line-height: 1.7; }
+  header { position: sticky; top: 0; z-index: 100; background: rgba(10,14,26,0.9); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 2rem; }
+  .header-inner { max-width: 1000px; margin: 0 auto; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+  .logo { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+  .logo-icon { width: 30px; height: 30px; background: var(--accent-dim); border: 1px solid var(--accent); border-radius: 7px; display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: 12px; color: var(--accent); }
+  .logo-text { font-size: 15px; font-weight: 700; color: var(--text); } .logo-text span { color: var(--accent); }
+  nav a { font-size: 13px; color: var(--text-muted); text-decoration: none; margin-left: 1.5rem; }
+  nav a:hover { color: var(--text); }
+  .breadcrumb { max-width: 1000px; margin: 0 auto; padding: 1rem 2rem 0; font-size: 12px; color: var(--text-dim); font-family: var(--mono); }
+  .breadcrumb a { color: var(--text-dim); text-decoration: none; } .breadcrumb span { margin: 0 6px; }
+  .page-wrap { max-width: 1000px; margin: 0 auto; padding: 2rem; display: grid; grid-template-columns: 1fr 300px; gap: 2.5rem; align-items: start; }
+  .main-col { min-width: 0; } .side-col { position: sticky; top: 80px; }
+  h1 { font-size: clamp(1.6rem, 3.5vw, 2.2rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 0.75rem; }
+  .intro { font-size: 15px; color: var(--text-muted); font-weight: 300; margin-bottom: 2rem; }
+  .converter-card { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 1.5rem; margin-bottom: 2rem; position: relative; overflow: hidden; }
+  .converter-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--accent), transparent); opacity: 0.6; }
+  .conv-row { display: flex; gap: 1rem; align-items: end; margin-bottom: 1.2rem; flex-wrap: wrap; }
+  .inp-group { flex: 1; min-width: 140px; }
+  .inp-group label { display: block; font-size: 11px; font-family: var(--mono); color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; }
+  .inp-group input { width: 100%; background: var(--surface2); border: 1px solid var(--border); color: var(--text); border-radius: 10px; padding: 12px 14px; font-size: 16px; font-family: var(--mono); outline: none; transition: border-color 0.2s; }
+  .inp-group input:focus { border-color: rgba(56,189,248,0.5); }
+  .inp-group input[readonly] { color: var(--green); background: var(--surface); }
+  .result-big { background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.2rem; margin-bottom: 1rem; display: flex; align-items: baseline; gap: 8px; }
+  .result-num { font-family: var(--mono); font-size: 2rem; font-weight: 500; color: var(--green); }
+  .result-lbl { font-size: 14px; color: var(--text-muted); }
+  .formula-pill { background: rgba(56,189,248,0.06); border: 1px solid rgba(56,189,248,0.15); border-radius: 8px; padding: 10px 14px; font-family: var(--mono); font-size: 13px; color: var(--text-muted); }
+  .formula-pill strong { color: var(--text); } .formula-pill em { color: var(--accent); font-style: normal; }
+  .ad-box { background: var(--surface); border: 1px dashed var(--border-strong); border-radius: 10px; height: 250px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-family: var(--mono); color: var(--text-dim); margin-bottom: 1.5rem; }
+  .sidebar-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 1.2rem; margin-bottom: 1rem; }
+  .sidebar-card h3 { font-size: 13px; font-weight: 600; margin-bottom: 1rem; color: var(--text-muted); }
+  table { width: 100%; border-collapse: collapse; }
+  th { font-size: 11px; font-family: var(--mono); color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.06em; text-align: left; padding: 6px 0; border-bottom: 1px solid var(--border); font-weight: 400; }
+  td { padding: 8px 0; font-size: 13px; color: var(--text-muted); border-bottom: 1px solid var(--border); font-family: var(--mono); }
+  td.label { color: var(--text); font-family: var(--sans); font-size: 13px; }
+  td:last-child { color: var(--green); } tr:last-child td { border-bottom: none; }
+  .content { margin-top: 2.5rem; }
+  h2 { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.01em; margin: 2rem 0 0.75rem; }
+  p { font-size: 15px; color: var(--text-muted); margin-bottom: 1rem; font-weight: 300; }
+  strong { color: var(--text); font-weight: 600; }
+  code { font-family: var(--mono); background: var(--surface2); border: 1px solid var(--border); border-radius: 5px; padding: 2px 7px; font-size: 13px; color: var(--accent); }
+  .formula-block { text-align: center; font-family: var(--mono); font-size: 1.1rem; color: var(--text); padding: 1rem; background: var(--surface); border-radius: 10px; border: 1px solid var(--border); margin-bottom: 1rem; }
+  .faq { margin-top: 1rem; }
+  .faq-item { border: 1px solid var(--border); border-radius: 12px; margin-bottom: 10px; overflow: hidden; }
+  .faq-q { padding: 1rem 1.2rem; font-size: 14px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: var(--surface); transition: background 0.2s; }
+  .faq-q:hover { background: var(--surface2); }
+  .faq-q::after { content: '+'; font-size: 18px; color: var(--text-dim); flex-shrink: 0; margin-left: 1rem; }
+  .faq-q.open::after { content: '−'; color: var(--accent); }
+  .faq-a { display: none; padding: 0 1.2rem 1rem; font-size: 14px; color: var(--text-muted); background: var(--surface); font-weight: 300; }
+  .faq-a.open { display: block; }
+  .ad-inline { background: var(--surface); border: 1px dashed var(--border-strong); border-radius: 10px; height: 90px; margin: 2rem 0; display: flex; align-items: center; justify-content: center; font-size: 11px; font-family: var(--mono); color: var(--text-dim); }
+  .related { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin-top: 1rem; }
+  .rel-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1rem; text-decoration: none; transition: border-color 0.2s; display: block; }
+  .rel-card:hover { border-color: rgba(56,189,248,0.3); }
+  .rel-card-title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+  .rel-card-url { font-size: 11px; font-family: var(--mono); color: var(--text-dim); }
+  footer { border-top: 1px solid var(--border); padding: 2rem; margin-top: 3rem; }
+  .footer-inner { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+  footer p { font-size: 13px; color: var(--text-dim); }
+  footer a { color: var(--text-dim); text-decoration: none; }
+  @media (max-width: 720px) { .page-wrap { grid-template-columns: 1fr; padding: 1.2rem; } .side-col { position: static; } h1 { font-size: 1.5rem; } .result-num { font-size: 1.5rem; } nav { display: none; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a href="/" class="logo"><div class="logo-icon">∫</div><span class="logo-text">Física<span>Convert</span></span></a>
+    <nav><a href="/presion/">Presión</a><a href="/energia/">Energía</a><a href="/fuerza/">Fuerza</a><a href="/temperatura/">Temperatura</a></nav>
+  </div>
+</header>
+<div class="breadcrumb">
+  <a href="/">Inicio</a><span>›</span><a href="/presion/">Presión</a><span>›</span>Pascal a atmósfera
+</div>
+<div class="page-wrap">
+  <main class="main-col">
+    <h1>Convertir Pascal a Atmósfera (atm)</h1>
+    <p class="intro">Calculadora online con la fórmula explicada. Ingresá el valor en Pascal (Pa) y obtenés el resultado en atmósferas (atm) al instante.</p>
+    <div class="converter-card">
+      <div class="conv-row">
+        <div class="inp-group"><label>Pascal (Pa)</label><input type="number" id="pa-in" value="101325" step="any"></div>
+        <div class="inp-group"><label>Atmósfera (atm)</label><input type="text" id="atm-out" readonly></div>
+      </div>
+      <div class="result-big">
+        <span class="result-num" id="result-num">1</span>
+        <span class="result-lbl">atmósfera (atm)</span>
+      </div>
+      <div class="formula-pill" id="formula-display"><strong>101325 Pa</strong> ÷ 101325 = <em>1 atm</em></div>
+    </div>
+    <div class="content">
+      <h2>Fórmula para convertir Pascal a atmósfera</h2>
+      <p>La fórmula de conversión entre Pascal y atmósfera es:</p>
+      <div class="formula-block">atm = Pa ÷ 101 325</div>
+      <p>Y para la conversión inversa:</p>
+      <div class="formula-block">Pa = atm × 101 325</div>
+      <p>El valor <code>101 325 Pa</code> es la <strong>presión atmosférica estándar</strong> definida internacionalmente, equivalente a la presión media del aire al nivel del mar a 0 °C. Este valor exacto fue adoptado por la IUPAC y la ISO como definición formal de 1 atm.</p>
+
+      <h2>¿Qué es el Pascal?</h2>
+      <p>El Pascal (Pa) es la unidad de presión del Sistema Internacional (SI), nombrada en honor al físico y matemático <strong>Blaise Pascal</strong>. Se define como la presión que ejerce <strong>1 Newton de fuerza sobre 1 metro cuadrado de superficie</strong>: <code>1 Pa = 1 N/m²</code>.</p>
+      <p>Es una unidad pequeña. La presión atmosférica equivale a 101 325 Pa, por eso en la práctica se usan kilopascales (kPa) y megapascales (MPa). En neumáticos de autos, por ejemplo, se trabaja en el rango de 200-300 kPa.</p>
+
+      <div class="ad-inline">[ Google AdSense — 728×90 ]</div>
+
+      <h2>¿Qué es la atmósfera (atm)?</h2>
+      <p>La atmósfera (atm) es una unidad de presión basada en la presión del aire en la superficie terrestre. Aunque no pertenece al SI, es ampliamente usada en química, especialmente en la <strong>ley de los gases ideales</strong>: <code>PV = nRT</code>, donde la presión suele expresarse en atm cuando R = 0.082057 L·atm/(mol·K).</p>
+      <p>También se usa en inmersión y buceo, meteorología histórica, y en muchos libros universitarios de química y física.</p>
+
+      <h2>Ejemplos resueltos</h2>
+      <p><strong>Presión atmosférica estándar:</strong> 101 325 Pa = <code>1 atm</code></p>
+      <p><strong>Presión de neumático (200 kPa):</strong> 200 000 Pa = <code>200 000 ÷ 101 325 = 1.974 atm</code></p>
+      <p><strong>Presión en el fondo del mar (100m):</strong> ≈ 1 100 000 Pa = <code>≈ 10.86 atm</code></p>
+      <p><strong>Presión en la cima del Everest:</strong> ≈ 33 775 Pa = <code>≈ 0.333 atm</code></p>
+      <p><strong>Vacío parcial (0.5 atm):</strong> <code>0.5 × 101 325 = 50 662.5 Pa</code></p>
+
+      <h2>Preguntas frecuentes</h2>
+      <div class="faq">
+        <div class="faq-item"><div class="faq-q">¿Cuántos Pascal hay en 1 atmósfera?</div><div class="faq-a">1 atm = <strong>101 325 Pa</strong>. Este es el valor exacto definido internacionalmente como la presión atmosférica estándar.</div></div>
+        <div class="faq-item"><div class="faq-q">¿Cuál es la diferencia entre atm y bar?</div><div class="faq-a">1 bar = 100 000 Pa, mientras que 1 atm = 101 325 Pa. Son muy similares pero no idénticos. 1 atm ≈ 1.01325 bar. El bar es más práctico en ingeniería, la atm es más usada en química.</div></div>
+        <div class="faq-item"><div class="faq-q">¿Se puede usar atm en la ley de los gases ideales?</div><div class="faq-a">Sí. Si usás atm como unidad de presión, la constante R toma el valor R = 0.082057 L·atm/(mol·K). Si usás Pa, entonces R = 8.314 J/(mol·K).</div></div>
+        <div class="faq-item"><div class="faq-q">¿Por qué el Pascal es tan pequeño?</div><div class="faq-a">Porque es la unidad base del SI para presión (N/m²). En ingeniería se usa kPa o MPa para valores prácticos. La presión atmosférica en Pascal (101 325) parece un número grande, pero es la unidad coherente con el resto del SI.</div></div>
+      </div>
+
+      <h2>Otras conversiones de presión</h2>
+      <div class="related">
+        <a href="/convertir/atm-a-pascal/" class="rel-card"><div class="rel-card-title">atm → Pascal</div><div class="rel-card-url">Pa = atm × 101 325</div></a>
+        <a href="/convertir/pascal-a-bar/" class="rel-card"><div class="rel-card-title">Pa → bar</div><div class="rel-card-url">bar = Pa ÷ 100 000</div></a>
+        <a href="/convertir/pascal-a-kpa/" class="rel-card"><div class="rel-card-title">Pa → kPa</div><div class="rel-card-url">kPa = Pa ÷ 1000</div></a>
+        <a href="/convertir/pascal-a-mmhg/" class="rel-card"><div class="rel-card-title">Pa → mmHg</div><div class="rel-card-url">mmHg = Pa ÷ 133.322</div></a>
+      </div>
+    </div>
+  </main>
+  <aside class="side-col">
+    <div class="ad-box">[ AdSense — 300×250 ]</div>
+    <div class="sidebar-card">
+      <h3>Tabla de conversión rápida</h3>
+      <table>
+        <thead><tr><th>Referencia</th><th>Pa</th><th>atm</th></tr></thead>
+        <tbody>
+          <tr><td class="label">Vacío perfecto</td><td>0</td><td>0</td></tr>
+          <tr><td class="label">Everest (cima)</td><td>33 775</td><td>0.333</td></tr>
+          <tr><td class="label">Nivel del mar</td><td>101 325</td><td>1</td></tr>
+          <tr><td class="label">Neumático auto</td><td>200 000</td><td>1.97</td></tr>
+          <tr><td class="label">10 m bajo el mar</td><td>201 325</td><td>1.99</td></tr>
+          <tr><td class="label">100 m bajo el mar</td><td>1 100 000</td><td>10.86</td></tr>
+          <tr><td class="label">1 MPa</td><td>1 000 000</td><td>9.87</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="sidebar-card" style="background: var(--surface2); border: 1px dashed var(--border-strong); height: 90px; display: flex; align-items: center; justify-content: center;">
+      <span style="font-size: 11px; font-family: var(--mono); color: var(--text-dim);">[ AdSense — 300×90 ]</span>
+    </div>
+  </aside>
+</div>
+<footer>
+  <div class="footer-inner">
+    <p>© 2025 FísicaConvert · Herramienta gratuita en español</p>
+    <p><a href="/privacidad/">Privacidad</a> · <a href="/contacto/">Contacto</a> · <a href="/sitemap.xml">Sitemap</a></p>
+  </div>
+</footer>
+<script>
+  const inp = document.getElementById("pa-in"), out = document.getElementById("atm-out");
+  const num = document.getElementById("result-num"), fml = document.getElementById("formula-display");
+  function convert() {
+    const v = parseFloat(inp.value);
+    if (isNaN(v)) { out.value = "—"; num.textContent = "—"; fml.innerHTML = "Ingresá un valor en Pa"; return; }
+    const r = v / 101325, s = parseFloat(r.toFixed(7)).toString();
+    out.value = s; num.textContent = s;
+    fml.innerHTML = `<strong>${v} Pa</strong> ÷ 101325 = <em>${s} atm</em>`;
+  }
+  inp.addEventListener("input", convert); convert();
+  document.querySelectorAll(".faq-q").forEach(q => {
+    q.addEventListener("click", () => {
+      const a = q.nextElementSibling, isOpen = q.classList.contains("open");
+      document.querySelectorAll(".faq-q").forEach(x => { x.classList.remove("open"); x.nextElementSibling.classList.remove("open"); });
+      if (!isOpen) { q.classList.add("open"); a.classList.add("open"); }
+    });
+  });
+</script>
+</body>
+</html>
