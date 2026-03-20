@@ -325,7 +325,19 @@ function fmtN(n){
 
 let currentCat="longitud";
 function populateUnits(cat){const d=UNITS[cat],fs=document.getElementById("unit-from"),ts=document.getElementById("unit-to");fs.innerHTML="";ts.innerHTML="";d.units.forEach(u=>{fs.appendChild(new Option(u.name,u.id));ts.appendChild(new Option(u.name,u.id))});ts.selectedIndex=1;calculate()}
-function calculate(){const cat=UNITS[currentCat],fId=document.getElementById("unit-from").value,tId=document.getElementById("unit-to").value,val=parseFloat(document.getElementById("input-val").value);if(isNaN(val)){["output-val","result-big"].forEach(i=>{document.getElementById(i).value||"";document.getElementById(i).textContent="—"});document.getElementById("result-unit-label").textContent="";document.getElementById("formula-display").innerHTML="Ingresá un valor para ver la fórmula.";return}const fU=cat.units.find(u=>u.id===fId),tU=cat.units.find(u=>u.id===tId);if(!fU||!tU)return;const base=fU.toBase(val),result=tU.fromBase(base),rs=fmtN(result);if(rs==="—"){document.getElementById("output-val").value="—";document.getElementById("result-big").textContent="—";document.getElementById("result-unit-label").textContent="";document.getElementById("formula-display").innerHTML="Valor inválido para esta conversión.";return}document.getElementById("output-val").value=rs;document.getElementById("result-big").textContent=rs;document.getElementById("result-unit-label").textContent=tId;document.getElementById("formula-display").innerHTML=cat.formula(fId,tId,val,rs)}
+function calculate(){
+  const cat=UNITS[currentCat],fId=document.getElementById("unit-from").value,tId=document.getElementById("unit-to").value,val=parseFloat(document.getElementById("input-val").value);
+  if(isNaN(val)){["output-val","result-big"].forEach(i=>{document.getElementById(i).value||"";document.getElementById(i).textContent="—"});document.getElementById("result-unit-label").textContent="";document.getElementById("formula-display").innerHTML="Ingresá un valor para ver la fórmula.";return}
+  const fU=cat.units.find(u=>u.id===fId),tU=cat.units.find(u=>u.id===tId);
+  if(!fU||!tU)return;
+  const base=fU.toBase(val),result=tU.fromBase(base),rs=fmtN(result);
+  if(rs==="—"){document.getElementById("output-val").value="—";document.getElementById("result-big").textContent="—";document.getElementById("result-unit-label").textContent="";document.getElementById("formula-display").innerHTML="Valor inválido para esta conversión.";return}
+  document.getElementById("output-val").value=rs;
+  document.getElementById("result-big").textContent=rs;
+  document.getElementById("result-unit-label").textContent=tId;
+  document.getElementById("formula-display").innerHTML=cat.formula(fId,tId,val,rs);
+  if(fId!==tId)addHistory(currentCat,fId,tId,val,rs);
+}
 
 document.getElementById("cat-tabs").addEventListener("click",e=>{const b=e.target.closest(".cat-btn");if(b)setCategory(b.dataset.cat)});
 document.getElementById("input-val").addEventListener("input",calculate);
@@ -552,18 +564,6 @@ function copyResult(){
   setTimeout(()=>{btn.textContent='copiar';btn.classList.remove('copied');},1500);
 }
 
-/* patch calculate to save history */
-const _calc=calculate;
-calculate=function(){
-  _calc();
-  const cat=currentCat;
-  if(!UNITS[cat])return;
-  const fId=document.getElementById('unit-from')?.value;
-  const tId=document.getElementById('unit-to')?.value;
-  const val=document.getElementById('input-val')?.value;
-  const result=document.getElementById('result-big')?.textContent;
-  if(result&&result!=='—'&&val&&fId&&tId&&fId!==tId)addHistory(cat,fId,tId,val,result);
-};
 
 /* ── PARTICLE FIELD ── */
 (function(){
