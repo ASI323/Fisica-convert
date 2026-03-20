@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ═══════════════════════════════════════════
+     SEO BÁSICO
+     Esto es lo que Google muestra en los resultados
+════════════════════════════════════════════ -->
+<title>Convertir Celsius a Kelvin — Calculadora Online + Fórmula</title>
+<meta name="description" content="Convertí Celsius a Kelvin al instante. Fórmula: K = °C + 273.15. Calculadora gratuita, ejemplos resueltos y tabla de conversión. En español, sin anuncios invasivos.">
+<link rel="canonical" href="https://fisicaconvert.com/convertir/celsius-a-kelvin/">
+
+<!-- Open Graph (para compartir en redes sociales) -->
+<meta property="og:title" content="Convertir Celsius a Kelvin — Calculadora Online + Fórmula">
+<meta property="og:description" content="Convertí Celsius a Kelvin al instante. K = °C + 273.15. Fórmula explicada con ejemplos.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://fisicaconvert.com/convertir/celsius-a-kelvin/">
+<meta property="og:locale" content="es_AR">
+
+<!-- ═══════════════════════════════════════════
+     DATOS ESTRUCTURADOS (Schema.org)
+     Esto le dice a Google exactamente qué es la página.
+     Puede generar "rich snippets" (resultados enriquecidos).
+════════════════════════════════════════════ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://fisicaconvert.com/convertir/celsius-a-kelvin/",
+      "url": "https://fisicaconvert.com/convertir/celsius-a-kelvin/",
+      "name": "Convertir Celsius a Kelvin — Calculadora Online + Fórmula",
+      "description": "Convertí Celsius a Kelvin al instante. Fórmula: K = °C + 273.15.",
+      "inLanguage": "es",
+      "isPartOf": { "@id": "https://fisicaconvert.com/" },
+      "breadcrumb": { "@id": "#breadcrumb" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://fisicaconvert.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Temperatura", "item": "https://fisicaconvert.com/temperatura/" },
+        { "@type": "ListItem", "position": 3, "name": "Celsius a Kelvin" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Cuál es la fórmula para convertir Celsius a Kelvin?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La fórmula es K = °C + 273.15. Para convertir una temperatura de Celsius a Kelvin, simplemente sumá 273.15 al valor en Celsius. Por ejemplo, 100 °C = 373.15 K."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuánto es 0 Celsius en Kelvin?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "0 °C equivale a 273.15 K. Este es el punto de congelación del agua. El cero absoluto, que es 0 K, equivale a -273.15 °C."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Por qué se suma 273.15 para convertir Celsius a Kelvin?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Porque el cero absoluto (0 K), el punto más frío posible en el universo, equivale a -273.15 °C. La escala Kelvin empieza en ese punto. Ambas escalas tienen la misma magnitud de grado, solo difieren en el punto de origen."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuánto es 37 grados Celsius en Kelvin?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "37 °C (temperatura corporal humana) equivale a 310.15 K. Se calcula como 37 + 273.15 = 310.15 K."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Sora:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0e1a;
+    --surface: #111827;
+    --surface2: #1a2235;
+    --border: rgba(255,255,255,0.08);
+    --border-strong: rgba(255,255,255,0.16);
+    --text: #f0f4ff;
+    --text-muted: #8899bb;
+    --text-dim: #4a5980;
+    --accent: #38bdf8;
+    --accent-dim: rgba(56,189,248,0.12);
+    --green: #34d399;
+    --mono: 'IBM Plex Mono', monospace;
+    --sans: 'Sora', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); background: var(--bg); color: var(--text); line-height: 1.7; }
+
+  /* HEADER */
+  header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(10,14,26,0.9); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+  }
+  .header-inner {
+    max-width: 1000px; margin: 0 auto; height: 56px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .logo { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+  .logo-icon {
+    width: 30px; height: 30px; background: var(--accent-dim);
+    border: 1px solid var(--accent); border-radius: 7px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono); font-size: 12px; color: var(--accent);
+  }
+  .logo-text { font-size: 15px; font-weight: 700; color: var(--text); }
+  .logo-text span { color: var(--accent); }
+  nav a { font-size: 13px; color: var(--text-muted); text-decoration: none; margin-left: 1.5rem; }
+  nav a:hover { color: var(--text); }
+
+  /* BREADCRUMB */
+  .breadcrumb {
+    max-width: 1000px; margin: 0 auto; padding: 1rem 2rem 0;
+    font-size: 12px; color: var(--text-dim); font-family: var(--mono);
+  }
+  .breadcrumb a { color: var(--text-dim); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--text-muted); }
+  .breadcrumb span { margin: 0 6px; }
+
+  /* LAYOUT */
+  .page-wrap { max-width: 1000px; margin: 0 auto; padding: 2rem; display: grid; grid-template-columns: 1fr 300px; gap: 2.5rem; align-items: start; }
+  .main-col { min-width: 0; }
+  .side-col { position: sticky; top: 80px; }
+
+  /* H1 */
+  h1 { font-size: clamp(1.6rem, 3.5vw, 2.2rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 0.75rem; }
+  .intro { font-size: 15px; color: var(--text-muted); font-weight: 300; margin-bottom: 2rem; max-width: 580px; }
+
+  /* CONVERTER */
+  .converter-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 18px; padding: 1.5rem; margin-bottom: 2rem; position: relative; overflow: hidden;
+  }
+  .converter-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent); opacity: 0.6;
+  }
+  .conv-row { display: flex; gap: 1rem; align-items: end; margin-bottom: 1.2rem; flex-wrap: wrap; }
+  .inp-group { flex: 1; min-width: 140px; }
+  .inp-group label { display: block; font-size: 11px; font-family: var(--mono); color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; }
+  .inp-group input, .inp-group select {
+    width: 100%; background: var(--surface2); border: 1px solid var(--border);
+    color: var(--text); border-radius: 10px; padding: 12px 14px;
+    font-size: 16px; font-family: var(--mono); outline: none; transition: border-color 0.2s;
+    -webkit-appearance: none;
+  }
+  .inp-group input:focus, .inp-group select:focus { border-color: rgba(56,189,248,0.5); }
+  .inp-group input[readonly] { color: var(--green); background: var(--surface); }
+
+  .result-big {
+    background: var(--surface2); border: 1px solid var(--border); border-radius: 12px;
+    padding: 1rem 1.2rem; margin-bottom: 1rem;
+    display: flex; align-items: baseline; gap: 8px;
+  }
+  .result-num { font-family: var(--mono); font-size: 2rem; font-weight: 500; color: var(--green); }
+  .result-lbl { font-size: 14px; color: var(--text-muted); }
+
+  .formula-pill {
+    background: rgba(56,189,248,0.06); border: 1px solid rgba(56,189,248,0.15);
+    border-radius: 8px; padding: 10px 14px;
+    font-family: var(--mono); font-size: 13px; color: var(--text-muted);
+  }
+  .formula-pill strong { color: var(--text); }
+  .formula-pill em { color: var(--accent); font-style: normal; }
+
+  /* AD */
+  .ad-box {
+    background: var(--surface); border: 1px dashed var(--border-strong);
+    border-radius: 10px; height: 250px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-family: var(--mono); color: var(--text-dim);
+    margin-bottom: 1.5rem;
+  }
+
+  /* SIDEBAR */
+  .sidebar-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 14px; padding: 1.2rem; margin-bottom: 1rem;
+  }
+  .sidebar-card h3 { font-size: 13px; font-weight: 600; margin-bottom: 1rem; color: var(--text-muted); letter-spacing: 0.03em; }
+
+  /* TABLE */
+  table { width: 100%; border-collapse: collapse; margin-bottom: 1rem; }
+  th { font-size: 11px; font-family: var(--mono); color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.06em; text-align: left; padding: 6px 0; border-bottom: 1px solid var(--border); font-weight: 400; }
+  td { padding: 8px 0; font-size: 13px; color: var(--text-muted); border-bottom: 1px solid var(--border); font-family: var(--mono); }
+  td:last-child { color: var(--green); }
+  tr:last-child td { border-bottom: none; }
+  td.label { color: var(--text); font-family: var(--sans); font-size: 13px; }
+
+  /* CONTENT */
+  .content { margin-top: 2.5rem; }
+  h2 { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.01em; margin: 2rem 0 0.75rem; color: var(--text); }
+  h3 { font-size: 1rem; font-weight: 600; margin: 1.5rem 0 0.5rem; color: var(--text); }
+  p { font-size: 15px; color: var(--text-muted); margin-bottom: 1rem; font-weight: 300; }
+  strong { color: var(--text); font-weight: 600; }
+  code { font-family: var(--mono); background: var(--surface2); border: 1px solid var(--border); border-radius: 5px; padding: 2px 7px; font-size: 13px; color: var(--accent); }
+
+  /* FAQ */
+  .faq { margin-top: 2rem; }
+  .faq-item { border: 1px solid var(--border); border-radius: 12px; margin-bottom: 10px; overflow: hidden; }
+  .faq-q {
+    padding: 1rem 1.2rem; font-size: 14px; font-weight: 600; cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center;
+    background: var(--surface); transition: background 0.2s;
+  }
+  .faq-q:hover { background: var(--surface2); }
+  .faq-q::after { content: '+'; font-size: 18px; color: var(--text-dim); flex-shrink: 0; margin-left: 1rem; }
+  .faq-q.open::after { content: '−'; color: var(--accent); }
+  .faq-a { display: none; padding: 0 1.2rem 1rem; font-size: 14px; color: var(--text-muted); background: var(--surface); font-weight: 300; }
+  .faq-a.open { display: block; }
+
+  /* INLINE AD */
+  .ad-inline {
+    background: var(--surface); border: 1px dashed var(--border-strong);
+    border-radius: 10px; height: 90px; margin: 2rem 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-family: var(--mono); color: var(--text-dim);
+  }
+
+  /* RELATED */
+  .related { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin-top: 1rem; }
+  .rel-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    padding: 1rem; text-decoration: none; transition: border-color 0.2s;
+  }
+  .rel-card:hover { border-color: rgba(56,189,248,0.3); }
+  .rel-card-title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+  .rel-card-url { font-size: 11px; font-family: var(--mono); color: var(--text-dim); }
+
+  /* FOOTER */
+  footer { border-top: 1px solid var(--border); padding: 2rem; margin-top: 3rem; }
+  .footer-inner { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+  footer p { font-size: 13px; color: var(--text-dim); }
+  footer a { color: var(--text-dim); text-decoration: none; }
+  footer a:hover { color: var(--text-muted); }
+
+  /* RESPONSIVE */
+  @media (max-width: 720px) {
+    .page-wrap { grid-template-columns: 1fr; padding: 1.2rem; }
+    .side-col { position: static; }
+    h1 { font-size: 1.5rem; }
+    .result-num { font-size: 1.5rem; }
+    nav { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="/" class="logo">
+      <div class="logo-icon">∫</div>
+      <span class="logo-text">Física<span>Convert</span></span>
+    </a>
+    <nav>
+      <a href="/temperatura/">Temperatura</a>
+      <a href="/longitud/">Longitud</a>
+      <a href="/masa/">Masa</a>
+      <a href="/energia/">Energía</a>
+    </nav>
+  </div>
+</header>
+
+<!-- BREADCRUMB — Google lo usa para mostrar la ruta en los resultados -->
+<div class="breadcrumb">
+  <a href="/">Inicio</a><span>›</span>
+  <a href="/temperatura/">Temperatura</a><span>›</span>
+  Celsius a Kelvin
+</div>
+
+<div class="page-wrap">
+
+  <!-- COLUMNA PRINCIPAL -->
+  <main class="main-col">
+
+    <h1>Convertir Celsius a Kelvin</h1>
+    <p class="intro">Calculadora online gratuita con la fórmula explicada. Ingresá el valor en °C y obtenés el resultado en Kelvin al instante.</p>
+
+    <!-- CONVERSOR -->
+    <div class="converter-card">
+      <div class="conv-row">
+        <div class="inp-group">
+          <label>Grados Celsius (°C)</label>
+          <input type="number" id="celsius-in" value="100" step="any" placeholder="Ej: 100">
+        </div>
+        <div class="inp-group">
+          <label>Kelvin (K)</label>
+          <input type="text" id="kelvin-out" readonly placeholder="—">
+        </div>
+      </div>
+      <div class="result-big">
+        <span class="result-num" id="result-num">373.15</span>
+        <span class="result-lbl">Kelvin (K)</span>
+      </div>
+      <div class="formula-pill" id="formula-display">
+        <strong>100 °C</strong> + 273.15 = <em>373.15 K</em>
+      </div>
+    </div>
+
+    <!-- CONTENIDO SEO — Esto es lo que Google indexa y posiciona -->
+    <div class="content">
+
+      <h2>Fórmula para convertir Celsius a Kelvin</h2>
+      <p>La conversión de grados Celsius a Kelvin es una de las más simples en física porque las dos escalas tienen la misma magnitud de grado — solo difieren en el punto de origen. La fórmula es:</p>
+      <p style="text-align:center; font-family: var(--mono); font-size: 1.1rem; color: var(--text); padding: 1rem; background: var(--surface); border-radius: 10px; border: 1px solid var(--border);">
+        K = °C + 273.15
+      </p>
+      <p>Donde <code>273.15</code> es la diferencia entre el cero absoluto (<strong>0 K</strong>) y el punto de congelación del agua en la escala Celsius (<strong>0 °C</strong>).</p>
+
+      <h2>¿Por qué existe la escala Kelvin?</h2>
+      <p>La escala Kelvin fue creada por el físico británico <strong>William Thomson (Lord Kelvin)</strong> en 1848. Su objetivo era definir una escala de temperatura <em>absoluta</em> — es decir, que empezara en el punto más frío posible del universo, donde las partículas no tienen energía cinética.</p>
+      <p>Ese punto, llamado <strong>cero absoluto</strong>, equivale a <code>−273.15 °C</code> o <code>0 K</code>. En la práctica científica, el Kelvin es la unidad oficial del Sistema Internacional de Unidades (SI) para la temperatura, y se usa en cálculos de termodinámica, física cuántica y astrofísica.</p>
+
+      <div class="ad-inline">[ Google AdSense — 728×90 ]</div>
+
+      <h2>Ejemplos resueltos</h2>
+      <p>Estos son algunos casos comunes que aparecen en problemas de física universitaria:</p>
+
+      <p><strong>Agua hirviendo:</strong> 100 °C → <code>100 + 273.15 = 373.15 K</code></p>
+      <p><strong>Temperatura corporal:</strong> 37 °C → <code>37 + 273.15 = 310.15 K</code></p>
+      <p><strong>Punto de congelación del agua:</strong> 0 °C → <code>0 + 273.15 = 273.15 K</code></p>
+      <p><strong>Temperatura ambiente típica:</strong> 25 °C → <code>25 + 273.15 = 298.15 K</code></p>
+      <p><strong>Nitrógeno líquido:</strong> −196 °C → <code>−196 + 273.15 = 77.15 K</code></p>
+
+      <h2>¿Cuándo se usa Kelvin en lugar de Celsius?</h2>
+      <p>El Kelvin se usa en física cuando la temperatura <strong>no puede ser negativa</strong>, por ejemplo en la ley de los gases ideales (<code>PV = nRT</code>), donde T debe estar en Kelvin para que la ecuación funcione. Si usás Celsius en esa fórmula, el resultado es incorrecto.</p>
+      <p>También se usa en astrofísica (la temperatura del sol es ~5778 K), en criogénica, y en cualquier campo donde trabajar con temperaturas absolutas sea necesario.</p>
+
+      <!-- FAQ — Google puede mostrar estas preguntas directamente en los resultados -->
+      <h2>Preguntas frecuentes</h2>
+      <div class="faq">
+        <div class="faq-item">
+          <div class="faq-q">¿Cuál es la fórmula para pasar de Celsius a Kelvin?</div>
+          <div class="faq-a">La fórmula es <strong>K = °C + 273.15</strong>. Sumás 273.15 al valor en Celsius y obtenés el equivalente en Kelvin. Es una suma directa, sin multiplicaciones.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">¿Cuánto es 0 °C en Kelvin?</div>
+          <div class="faq-a">0 °C equivale a <strong>273.15 K</strong>. Este es el punto de congelación del agua. El cero absoluto (0 K) equivale a −273.15 °C.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">¿Por qué se suma 273.15 y no 273?</div>
+          <div class="faq-a">El valor exacto del cero absoluto es −273.15 °C (medido experimentalmente). Usamos 273.15 para mayor precisión. En problemas de física que no requieren alta exactitud, se puede aproximar a 273.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">¿Cuánto es 37 °C (temperatura corporal) en Kelvin?</div>
+          <div class="faq-a">37 °C = <strong>310.15 K</strong>. Se calcula como 37 + 273.15 = 310.15.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">¿La escala Kelvin tiene grados negativos?</div>
+          <div class="faq-a">No. Como empieza en el cero absoluto (el mínimo posible), no existen valores negativos en Kelvin. Por eso se usa en física: garantiza que T ≥ 0 siempre.</div>
+        </div>
+      </div>
+
+      <!-- PÁGINAS RELACIONADAS — linkado interno, muy importante para SEO -->
+      <h2>Otras conversiones de temperatura</h2>
+      <div class="related">
+        <a href="/convertir/kelvin-a-celsius/" class="rel-card">
+          <div class="rel-card-title">Kelvin → Celsius</div>
+          <div class="rel-card-url">°C = K − 273.15</div>
+        </a>
+        <a href="/convertir/celsius-a-fahrenheit/" class="rel-card">
+          <div class="rel-card-title">Celsius → Fahrenheit</div>
+          <div class="rel-card-url">°F = (°C × 9/5) + 32</div>
+        </a>
+        <a href="/convertir/fahrenheit-a-celsius/" class="rel-card">
+          <div class="rel-card-title">Fahrenheit → Celsius</div>
+          <div class="rel-card-url">°C = (°F − 32) × 5/9</div>
+        </a>
+        <a href="/convertir/kelvin-a-fahrenheit/" class="rel-card">
+          <div class="rel-card-title">Kelvin → Fahrenheit</div>
+          <div class="rel-card-url">°F = (K − 273.15) × 9/5 + 32</div>
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- COLUMNA LATERAL -->
+  <aside class="side-col">
+
+    <!-- AD SIDEBAR -->
+    <div class="ad-box">[ AdSense — 300×250 ]</div>
+
+    <!-- TABLA DE VALORES COMUNES -->
+    <div class="sidebar-card">
+      <h3>Tabla de conversión rápida</h3>
+      <table>
+        <thead>
+          <tr><th>Referencia</th><th>°C</th><th>K</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="label">Cero absoluto</td><td>−273.15</td><td>0</td></tr>
+          <tr><td class="label">Nitrógeno líquido</td><td>−196</td><td>77.15</td></tr>
+          <tr><td class="label">Hielo seco</td><td>−78.5</td><td>194.65</td></tr>
+          <tr><td class="label">Congelación agua</td><td>0</td><td>273.15</td></tr>
+          <tr><td class="label">Temperatura ambiente</td><td>25</td><td>298.15</td></tr>
+          <tr><td class="label">Temperatura corporal</td><td>37</td><td>310.15</td></tr>
+          <tr><td class="label">Ebullición agua</td><td>100</td><td>373.15</td></tr>
+          <tr><td class="label">Superficie del sol</td><td>5504</td><td>5778</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- AD SIDEBAR 2 -->
+    <div class="sidebar-card" style="background: var(--surface2); border: 1px dashed var(--border-strong); height: 90px; display: flex; align-items: center; justify-content: center;">
+      <span style="font-size: 11px; font-family: var(--mono); color: var(--text-dim);">[ AdSense — 300×90 ]</span>
+    </div>
+
+  </aside>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <p>© 2025 FísicaConvert · Herramienta gratuita en español</p>
+    <p><a href="/privacidad/">Privacidad</a> · <a href="/contacto/">Contacto</a> · <a href="/sitemap.xml">Sitemap</a></p>
+  </div>
+</footer>
+
+<script>
+  // CONVERSOR
+  const celsiusIn  = document.getElementById("celsius-in");
+  const kelvinOut  = document.getElementById("kelvin-out");
+  const resultNum  = document.getElementById("result-num");
+  const formulaEl  = document.getElementById("formula-display");
+
+  function convert() {
+    const c = parseFloat(celsiusIn.value);
+    if (isNaN(c)) {
+      kelvinOut.value = "—";
+      resultNum.textContent = "—";
+      formulaEl.innerHTML = "Ingresá un valor en °C";
+      return;
+    }
+    const k = c + 273.15;
+    const kStr = parseFloat(k.toFixed(4)).toString();
+    kelvinOut.value = kStr;
+    resultNum.textContent = kStr;
+    formulaEl.innerHTML = `<strong>${c} °C</strong> + 273.15 = <em>${kStr} K</em>`;
+  }
+
+  celsiusIn.addEventListener("input", convert);
+  convert();
+
+  // FAQ accordion
+  document.querySelectorAll(".faq-q").forEach(q => {
+    q.addEventListener("click", () => {
+      const a = q.nextElementSibling;
+      const isOpen = q.classList.contains("open");
+      document.querySelectorAll(".faq-q").forEach(x => { x.classList.remove("open"); x.nextElementSibling.classList.remove("open"); });
+      if (!isOpen) { q.classList.add("open"); a.classList.add("open"); }
+    });
+  });
+</script>
+</body>
+</html>
