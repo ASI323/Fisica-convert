@@ -66,6 +66,26 @@ h1 .highlight{color:var(--accent)}
 .physics-eqs span{transition:color .2s}.physics-eqs span:not(.eq-dot):hover{color:var(--accent);opacity:1}
 .eq-dot{color:var(--text-dim);opacity:.4;font-size:18px;line-height:1}
 .converter-hint{text-align:center;font-size:13px;color:var(--text-dim);font-family:var(--mono);letter-spacing:.03em;margin-bottom:1.2rem}
+.unit-search-wrap{max-width:780px;margin:0 auto 1rem;padding:0 2rem}
+.unit-search{width:100%;background:var(--surface);border:1px solid var(--border);color:var(--text);border-radius:12px;padding:11px 16px 11px 40px;font-size:14px;font-family:var(--sans);outline:none;transition:border-color .2s;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%234a5980' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:12px center}
+.unit-search:focus{border-color:rgba(56,189,248,0.5)}
+.unit-search::placeholder{color:var(--text-dim)}
+.copy-btn{background:var(--surface2);border:1px solid var(--border);color:var(--text-muted);padding:6px 14px;border-radius:8px;font-size:12px;font-family:var(--mono);cursor:pointer;transition:all .2s;margin-left:10px;vertical-align:middle}
+.copy-btn:hover{background:var(--accent-dim);border-color:rgba(56,189,248,0.4);color:var(--accent)}
+.copy-btn.copied{background:rgba(52,211,153,0.15);border-color:rgba(52,211,153,0.4);color:var(--green)}
+.history-wrap{max-width:780px;margin:0 auto 2rem;padding:0 2rem}
+.history-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.2rem 1.5rem}
+.history-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:.8rem}
+.history-title{font-size:11px;font-family:var(--mono);color:var(--text-dim);text-transform:uppercase;letter-spacing:.08em}
+.history-clear{background:none;border:none;color:var(--text-dim);font-size:11px;font-family:var(--mono);cursor:pointer;transition:color .2s}
+.history-clear:hover{color:var(--text-muted)}
+.history-list{display:flex;flex-direction:column;gap:6px}
+.history-item{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:13px;color:var(--text-muted);padding:6px 8px;border-radius:8px;cursor:pointer;transition:background .15s}
+.history-item:hover{background:var(--surface2)}
+.history-item .h-from{color:var(--text-dim)}
+.history-item .h-arrow{color:var(--text-dim);margin:0 6px}
+.history-item .h-result{color:var(--green);font-weight:500}
+.history-item .h-cat{font-size:10px;color:var(--text-dim);margin-left:8px}
 .categories-wrap{max-width:1100px;margin:0 auto;padding:0 2rem}
 .categories{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:.75rem}
 .cat-btn{background:var(--surface);border:1px solid var(--border);color:var(--text-muted);padding:8px 18px;border-radius:999px;font-size:13px;font-family:var(--sans);cursor:pointer;transition:all .2s;font-weight:400}
@@ -212,10 +232,14 @@ body>*:not(#particle-canvas){position:relative;z-index:1}
     <button class="cat-btn" data-cat="area">📐 Área</button>
     <button class="cat-btn" data-cat="angulo">📐 Ángulo</button>
     <button class="cat-btn" data-cat="campo_mag">🧲 Campo Mag.</button>
+    <button class="cat-btn" data-cat="volumen">🧪 Volumen</button>
     <button class="cat-btn" data-cat="radiacion">☢️ Radiación</button>
     <button class="cat-btn" data-cat="optica">🔭 Óptica</button>
   </div>
   <p class="converter-hint">En español · Con fórmulas explicadas · Sistema Internacional</p>
+</div>
+<div class="unit-search-wrap">
+  <input class="unit-search" type="text" id="unit-search" placeholder="Buscar categoría... (ej: temperatura, presión, longitud)">
 </div>
 <div class="converter-wrap" id="converter-wrap">
   <div class="converter-card">
@@ -228,11 +252,20 @@ body>*:not(#particle-canvas){position:relative;z-index:1}
       <div class="input-group"><label>Convertir de</label><select id="unit-from"></select></div>
       <div class="input-group"><label>Convertir a</label><select id="unit-to"></select></div>
     </div>
-    <div class="result-box"><div class="result-label">Resultado</div><div><span class="result-value" id="result-big">—</span><span class="result-unit" id="result-unit-label"></span></div></div>
+    <div class="result-box"><div class="result-label">Resultado</div><div style="display:flex;align-items:center;flex-wrap:wrap;gap:4px"><span class="result-value" id="result-big">—</span><span class="result-unit" id="result-unit-label"></span><button class="copy-btn" id="copy-btn" onclick="copyResult()">copiar</button></div></div>
     <div class="formula-box"><div class="formula-label">Fórmula de conversión</div><div class="formula-text" id="formula-display">Seleccioná las unidades para ver la fórmula.</div></div>
   </div>
 </div>
 <div class="special-wrap" id="special-wrap"></div>
+<div class="history-wrap" id="history-wrap" style="display:none">
+  <div class="history-card">
+    <div class="history-header">
+      <span class="history-title">🕓 Conversiones recientes</span>
+      <button class="history-clear" onclick="clearHistory()">limpiar</button>
+    </div>
+    <div class="history-list" id="history-list"></div>
+  </div>
+</div>
 <div class="ad-slot"><div class="ad-placeholder">[ Espacio publicitario — 728×90 ]</div></div>
 <section class="features" id="acerca">
   <div class="section-label">¿Por qué FísicaConvert?</div>
@@ -259,7 +292,8 @@ body>*:not(#particle-canvas){position:relative;z-index:1}
     <div class="cat-card" onclick="setCategory('tiempo')"><div class="cat-card-icon">⏱️</div><div class="cat-card-name">Tiempo</div><div class="cat-card-count">6 unidades</div></div>
     <div class="cat-card" onclick="setCategory('area')"><div class="cat-card-icon">📐</div><div class="cat-card-name">Área</div><div class="cat-card-count">12 unidades</div></div>
     <div class="cat-card" onclick="setCategory('angulo')"><div class="cat-card-icon">📐</div><div class="cat-card-name">Ángulo</div><div class="cat-card-count">5 unidades</div></div>
-    <div class="cat-card" onclick="setCategory('campo_mag')"><div class="cat-card-icon">🧲</div><div class="cat-card-name">Campo Magnético</div><div class="cat-card-count">6 unidades</div></div>
+    <div class="cat-card" onclick="setCategory('campo_mag')"><div class="cat-card-icon">🧲</div><div class="cat-card-name">Campo Magnético</div><div class="cat-card-count">5 unidades</div></div>
+    <div class="cat-card" onclick="setCategory('volumen')"><div class="cat-card-icon">🧪</div><div class="cat-card-name">Volumen</div><div class="cat-card-count">12 unidades</div></div>
     <div class="cat-card" onclick="setCategory('radiacion')"><div class="cat-card-icon">☢️</div><div class="cat-card-name">Radiación</div><div class="cat-card-count">actividad · dosis</div></div>
     <div class="cat-card" onclick="setCategory('optica')"><div class="cat-card-icon">🔭</div><div class="cat-card-name">Óptica</div><div class="cat-card-count">espectro · lentes</div></div>
   </div>
@@ -278,6 +312,7 @@ const UNITS={
   area:{label:"Área",units:[{id:"km2",name:"Kilómetro² (km²)",toBase:v=>v*1e6,fromBase:v=>v/1e6},{id:"ha",name:"Hectárea (ha)",toBase:v=>v*10000,fromBase:v=>v/10000},{id:"m2",name:"Metro² (m²)",toBase:v=>v,fromBase:v=>v},{id:"cm2",name:"Centímetro² (cm²)",toBase:v=>v*1e-4,fromBase:v=>v*1e4},{id:"mm2",name:"Milímetro² (mm²)",toBase:v=>v*1e-6,fromBase:v=>v*1e6},{id:"in2",name:"Pulgada² (in²)",toBase:v=>v*6.4516e-4,fromBase:v=>v/6.4516e-4},{id:"ft2",name:"Pie² (ft²)",toBase:v=>v*.092903,fromBase:v=>v/.092903},{id:"ac",name:"Acre (ac)",toBase:v=>v*4046.86,fromBase:v=>v/4046.86},{id:"mi2",name:"Milla² (mi²)",toBase:v=>v*2.58999e6,fromBase:v=>v/2.58999e6}],formula:(f,t,v,r)=>{if(f==="m2"&&t==="cm2")return`cm²=m²×10000 → ${v}×10⁴=<strong>${r}cm²</strong>`;if(f==="cm2"&&t==="m2")return`m²=cm²÷10000 → ${v}÷10⁴=<strong>${r}m²</strong>`;if(f==="ha"&&t==="m2")return`m²=ha×10000 → ${v}×10000=<strong>${r}m²</strong>`;if(f==="m2"&&t==="ha")return`ha=m²÷10000 → ${v}÷10000=<strong>${r}ha</strong>`;if(f==="ft2"&&t==="m2")return`m²=ft²×0.0929 → ${v}×0.0929=<strong>${r}m²</strong>`;if(f==="in2"&&t==="cm2")return`cm²=in²×6.4516 → ${v}×6.4516=<strong>${r}cm²</strong>`;return gF(f,t,v,r);}},
   angulo:{label:"Ángulo",units:[{id:"deg",name:"Grado (°)",toBase:v=>v*Math.PI/180,fromBase:v=>v*180/Math.PI},{id:"rad",name:"Radián (rad)",toBase:v=>v,fromBase:v=>v},{id:"rev",name:"Revolución (rev)",toBase:v=>v*2*Math.PI,fromBase:v=>v/(2*Math.PI)},{id:"amin",name:"Minuto de arco (′)",toBase:v=>v*Math.PI/10800,fromBase:v=>v*10800/Math.PI},{id:"asec",name:"Segundo de arco (″)",toBase:v=>v*Math.PI/648000,fromBase:v=>v*648000/Math.PI}],formula:(f,t,v,r)=>{if(f==="deg"&&t==="rad")return`rad=°×π/180=${v}×π/180=<strong>${r}rad</strong>`;if(f==="rad"&&t==="deg")return`°=rad×180/π=${v}×180/π=<strong>${r}°</strong>`;if(f==="deg"&&t==="grad")return`grad=°×10/9=${v}×10/9=<strong>${r}grad</strong>`;if(f==="grad"&&t==="deg")return`°=grad×9/10=${v}×0.9=<strong>${r}°</strong>`;if(f==="deg"&&t==="amin")return`′=°×60=${v}×60=<strong>${r}′</strong>`;if(f==="amin"&&t==="asec")return`″=′×60=${v}×60=<strong>${r}″</strong>`;if(f==="deg"&&t==="asec")return`″=°×3600=${v}×3600=<strong>${r}″</strong>`;if(f==="rev"&&t==="deg")return`°=rev×360=${v}×360=<strong>${r}°</strong>`;if(f==="rev"&&t==="rad")return`rad=rev×2π=${v}×2π=<strong>${r}rad</strong>`;return gF(f,t,v,r);}},
   campo_mag:{label:"Campo Magnético (B)",units:[{id:"T",name:"Tesla (T)",toBase:v=>v,fromBase:v=>v},{id:"mT",name:"Militesla (mT)",toBase:v=>v*1e-3,fromBase:v=>v*1e3},{id:"uT",name:"Microtesla (μT)",toBase:v=>v*1e-6,fromBase:v=>v*1e6},{id:"nT",name:"Nanotesla (nT)",toBase:v=>v*1e-9,fromBase:v=>v*1e9},{id:"G",name:"Gauss (G)",toBase:v=>v*1e-4,fromBase:v=>v*1e4}],formula:(f,t,v,r)=>{if(f==="T"&&t==="G")return`G=T×10000=${v}×10⁴=<strong>${r}G</strong>`;if(f==="G"&&t==="T")return`T=G÷10000=${v}÷10⁴=<strong>${r}T</strong>`;if(f==="T"&&t==="mT")return`mT=T×1000=${v}×1000=<strong>${r}mT</strong>`;if(f==="G"&&t==="uT")return`μT=G×100=${v}×100=<strong>${r}μT</strong>`;if(f==="uT"&&t==="G")return`G=μT÷100=${v}÷100=<strong>${r}G</strong>`;if(f==="T"&&t==="Wbm2")return`1 T = 1 Wb/m² → <strong>${r}Wb/m²</strong>`;return gF(f,t,v,r);}},
+  volumen:{label:"Volumen",units:[{id:"m3",name:"Metro³ (m³)",toBase:v=>v,fromBase:v=>v},{id:"L",name:"Litro (L)",toBase:v=>v*1e-3,fromBase:v=>v*1e3},{id:"mL",name:"Mililitro (mL)",toBase:v=>v*1e-6,fromBase:v=>v*1e6},{id:"cm3",name:"Centímetro³ (cm³)",toBase:v=>v*1e-6,fromBase:v=>v*1e6},{id:"mm3",name:"Milímetro³ (mm³)",toBase:v=>v*1e-9,fromBase:v=>v*1e9},{id:"ft3",name:"Pie³ (ft³)",toBase:v=>v*0.028317,fromBase:v=>v/0.028317},{id:"in3",name:"Pulgada³ (in³)",toBase:v=>v*1.6387e-5,fromBase:v=>v/1.6387e-5},{id:"galUS",name:"Galón US (gal)",toBase:v=>v*3.78541e-3,fromBase:v=>v/3.78541e-3},{id:"galUK",name:"Galón imperial (UK)",toBase:v=>v*4.54609e-3,fromBase:v=>v/4.54609e-3},{id:"floz",name:"Onza líquida (fl oz)",toBase:v=>v*2.9574e-5,fromBase:v=>v/2.9574e-5},{id:"tsp",name:"Cucharadita (tsp)",toBase:v=>v*4.9289e-6,fromBase:v=>v/4.9289e-6},{id:"tbsp",name:"Cucharada (tbsp)",toBase:v=>v*1.4787e-5,fromBase:v=>v/1.4787e-5}],formula:(f,t,v,r)=>{if(f==="L"&&t==="mL")return`mL=L×1000=${v}×1000=<strong>${r}mL</strong>`;if(f==="mL"&&t==="L")return`L=mL÷1000=${v}÷1000=<strong>${r}L</strong>`;if(f==="m3"&&t==="L")return`L=m³×1000=${v}×1000=<strong>${r}L</strong>`;if(f==="L"&&t==="m3")return`m³=L÷1000=${v}÷1000=<strong>${r}m³</strong>`;if(f==="L"&&t==="galUS")return`gal=L÷3.785=${v}÷3.785=<strong>${r}gal</strong>`;if(f==="galUS"&&t==="L")return`L=gal×3.785=${v}×3.785=<strong>${r}L</strong>`;if(f==="mL"&&t==="cm3")return`1 mL = 1 cm³ exacto → <strong>${r}cm³</strong>`;return gF(f,t,v,r);}},
 };
 
 function gF(f,t,v,r){return`<strong>${v} ${f}</strong> = <em>${r}</em> ${t}`}
@@ -463,6 +498,72 @@ function setCategory(cat){
 }
 
 populateUnits('longitud');
+
+/* ── BUSCADOR ── */
+const CAT_NAMES={longitud:'Longitud',masa:'Masa',temperatura:'Temperatura',velocidad:'Velocidad',fuerza:'Fuerza',energia:'Energía',presion:'Presión',tiempo:'Tiempo',area:'Área',angulo:'Ángulo',campo_mag:'Campo Magnético',volumen:'Volumen',radiacion:'Radiación',optica:'Óptica'};
+document.getElementById('unit-search').addEventListener('input',function(){
+  const q=this.value.toLowerCase().trim();
+  document.querySelectorAll('.cat-btn').forEach(b=>{
+    const name=(CAT_NAMES[b.dataset.cat]||b.dataset.cat).toLowerCase();
+    b.style.display=(!q||name.includes(q))?'':'none';
+  });
+});
+
+/* ── HISTORIAL ── */
+let history=[];
+function addHistory(cat,fromId,toId,val,result){
+  const entry={cat,fromId,toId,val,result,label:CAT_NAMES[cat]||cat};
+  history=history.filter(h=>!(h.cat===cat&&h.fromId===fromId&&h.toId===toId));
+  history.unshift(entry);
+  if(history.length>8)history.pop();
+  renderHistory();
+}
+function renderHistory(){
+  const wrap=document.getElementById('history-wrap');
+  const list=document.getElementById('history-list');
+  if(!history.length){wrap.style.display='none';return;}
+  wrap.style.display='block';
+  list.innerHTML=history.map((h,i)=>`
+    <div class="history-item" onclick="restoreHistory(${i})">
+      <span><span class="h-from">${h.val} ${h.fromId}</span><span class="h-arrow">→</span><span class="h-result">${h.result} ${h.toId}</span></span>
+      <span class="h-cat">${h.label}</span>
+    </div>`).join('');
+}
+function restoreHistory(i){
+  const h=history[i];
+  setCategory(h.cat);
+  setTimeout(()=>{
+    const f=document.getElementById('unit-from'),t=document.getElementById('unit-to');
+    if(f)f.value=h.fromId;if(t)t.value=h.toId;
+    const inp=document.getElementById('input-val');
+    if(inp){inp.value=h.val;calculate();}
+  },50);
+}
+function clearHistory(){history=[];renderHistory();}
+
+/* ── COPIAR ── */
+function copyResult(){
+  const val=document.getElementById('result-big').textContent;
+  const unit=document.getElementById('result-unit-label').textContent;
+  if(val==='—')return;
+  navigator.clipboard?.writeText(val+' '+unit);
+  const btn=document.getElementById('copy-btn');
+  btn.textContent='✓ copiado';btn.classList.add('copied');
+  setTimeout(()=>{btn.textContent='copiar';btn.classList.remove('copied');},1500);
+}
+
+/* patch calculate to save history */
+const _calc=calculate;
+calculate=function(){
+  _calc();
+  const cat=currentCat;
+  if(!UNITS[cat])return;
+  const fId=document.getElementById('unit-from')?.value;
+  const tId=document.getElementById('unit-to')?.value;
+  const val=document.getElementById('input-val')?.value;
+  const result=document.getElementById('result-big')?.textContent;
+  if(result&&result!=='—'&&val&&fId&&tId&&fId!==tId)addHistory(cat,fId,tId,val,result);
+};
 
 /* ── PARTICLE FIELD ── */
 (function(){
