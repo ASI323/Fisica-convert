@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FísicaConvert — Convertidor de Unidades</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Sora:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0a0e1a;--surface:#111827;--surface2:#1a2235;--border:rgba(255,255,255,0.08);--border-strong:rgba(255,255,255,0.16);--text:#f0f4ff;--text-muted:#8899bb;--text-dim:#4a5980;--accent:#38bdf8;--accent-dim:rgba(56,189,248,0.12);--green:#34d399;--amber:#fbbf24;--mono:'JetBrains Mono',monospace;--sans:'Sora',sans-serif}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6}
+header{position:sticky;top:0;z-index:100;background:rgba(10,14,26,0.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem}
+.header-inner{max-width:1100px;margin:0 auto;height:60px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-icon{width:32px;height:32px;background:var(--accent-dim);border:1px solid var(--accent);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:13px;color:var(--accent);font-weight:500}
+.logo-text{font-size:16px;font-weight:700;color:var(--text)}.logo-text span{color:var(--accent)}
+nav{display:flex;gap:2rem}
+nav a{font-size:13px;color:var(--text-muted);text-decoration:none;transition:color .2s}
+nav a:hover{color:var(--text)}
+.hero{max-width:1100px;margin:0 auto;padding:5rem 2rem 3rem;text-align:center}
+.badge{display:inline-flex;align-items:center;gap:6px;background:var(--accent-dim);border:1px solid rgba(56,189,248,0.3);border-radius:999px;padding:4px 14px;font-size:12px;color:var(--accent);font-family:var(--mono);margin-bottom:1.5rem;letter-spacing:.05em}
+.badge::before{content:'';width:6px;height:6px;background:var(--accent);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+h1{font-size:clamp(2.2rem,5vw,3.6rem);font-weight:700;line-height:1.15;letter-spacing:-.02em;margin-bottom:1.2rem}
+h1 .highlight{color:var(--accent)}
+.physics-eqs{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px;font-family:var(--mono);font-size:14px;color:var(--text-dim);margin-bottom:1.2rem;letter-spacing:.04em;opacity:.7}
+.physics-eqs span{transition:color .2s}.physics-eqs span:not(.eq-dot):hover{color:var(--accent);opacity:1}
+.eq-dot{color:var(--text-dim);opacity:.4;font-size:18px;line-height:1}
+.converter-hint{text-align:center;font-size:13px;color:var(--text-dim);font-family:var(--mono);letter-spacing:.03em;margin-bottom:1.2rem}
+.categories-wrap{max-width:1100px;margin:0 auto;padding:0 2rem}
+.categories{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:.75rem}
+.cat-btn{background:var(--surface);border:1px solid var(--border);color:var(--text-muted);padding:8px 18px;border-radius:999px;font-size:13px;font-family:var(--sans);cursor:pointer;transition:all .2s;font-weight:400}
+.cat-btn:hover{border-color:var(--border-strong);color:var(--text)}
+.cat-btn.active{background:var(--accent-dim);border-color:rgba(56,189,248,0.5);color:var(--accent);font-weight:600}
+.converter-wrap{max-width:780px;margin:0 auto;padding:0 2rem 2rem}
+.converter-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:2rem;position:relative;overflow:hidden}
+.converter-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:.6}
+.converter-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:1rem;align-items:end;margin-bottom:1.5rem}
+.input-group label{display:block;font-size:11px;font-family:var(--mono);color:var(--text-dim);letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}
+.input-group select,.input-group input{width:100%;background:var(--surface2);border:1px solid var(--border);color:var(--text);border-radius:12px;padding:14px 16px;font-size:15px;font-family:var(--sans);outline:none;transition:border-color .2s;appearance:none;-webkit-appearance:none}
+.input-group select:focus,.input-group input:focus{border-color:rgba(56,189,248,0.5)}
+.input-group select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%238899bb' d='M6 8L1 3h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px;cursor:pointer}
+.input-group input{font-family:var(--mono);font-size:18px;font-weight:500}
+.input-group input::placeholder{color:var(--text-dim)}
+.swap-btn{background:var(--surface2);border:1px solid var(--border);color:var(--text-muted);width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;flex-shrink:0;align-self:flex-end;font-size:18px}
+.swap-btn:hover{background:var(--accent-dim);border-color:rgba(56,189,248,0.4);color:var(--accent);transform:rotate(180deg)}
+.result-box{background:var(--surface2);border:1px solid var(--border);border-radius:14px;padding:1.2rem 1.5rem;margin-bottom:1.5rem}
+.result-label{font-size:11px;font-family:var(--mono);color:var(--text-dim);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+.result-value{font-family:var(--mono);font-size:2rem;font-weight:500;color:var(--green);letter-spacing:-.02em}
+.result-unit{font-size:1rem;color:var(--text-muted);margin-left:8px}
+.formula-box{background:rgba(56,189,248,0.05);border:1px solid rgba(56,189,248,0.15);border-radius:10px;padding:1rem 1.2rem}
+.formula-label{font-size:10px;font-family:var(--mono);color:var(--accent);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;opacity:.7}
+.formula-text{font-family:var(--mono);font-size:14px;color:var(--text-muted);line-height:1.8}
+.formula-text strong{color:var(--text);font-weight:500}.formula-text em{color:var(--accent);font-style:normal}
+/* SPECIAL */
+.special-wrap{max-width:780px;margin:0 auto;padding:0 2rem 2rem;display:none}
+.special-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:2rem;position:relative;overflow:hidden}
+.special-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:.6}
+.sc-title{font-size:11px;font-weight:600;color:var(--text-dim);font-family:var(--mono);text-transform:uppercase;letter-spacing:.1em;margin-bottom:1.4rem}
+.sc-toggle{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1.4rem}
+.sc-toggle button{background:var(--surface2);border:1px solid var(--border);color:var(--text-muted);padding:7px 16px;border-radius:999px;font-size:13px;font-family:var(--sans);cursor:pointer;transition:all .2s}
+.sc-toggle button.active{background:var(--accent-dim);border-color:rgba(56,189,248,0.5);color:var(--accent);font-weight:600}
+.sc-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+.sc-row.single{grid-template-columns:1fr}
+.sc-field label{display:block;font-size:11px;font-family:var(--mono);color:var(--text-dim);letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}
+.sc-field-inner{display:flex;gap:6px}
+.sc-field input,.sc-field select{background:var(--surface2);border:1px solid var(--border);color:var(--text);border-radius:12px;padding:12px 14px;font-size:15px;font-family:var(--mono);outline:none;transition:border-color .2s;appearance:none;-webkit-appearance:none;width:100%}
+.sc-field input:focus,.sc-field select:focus{border-color:rgba(56,189,248,0.5)}
+.sc-field select.unit-sel{width:auto;min-width:84px;flex-shrink:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%238899bb' d='M6 8L1 3h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;padding-right:26px;cursor:pointer}
+.sc-results{background:var(--surface2);border:1px solid var(--border);border-radius:14px;padding:1rem 1.4rem;margin:1.2rem 0}
+.sc-result-item{display:flex;justify-content:space-between;align-items:baseline;padding:7px 0;border-bottom:1px solid var(--border)}
+.sc-result-item:last-child{border-bottom:none}
+.sc-result-lbl{font-size:11px;font-family:var(--mono);color:var(--text-dim);text-transform:uppercase;letter-spacing:.07em}
+.sc-result-val{font-family:var(--mono);font-size:1.25rem;font-weight:500;color:var(--green)}
+.sc-result-unit{font-size:12px;color:var(--text-muted);margin-left:5px}
+.sc-formula{background:rgba(56,189,248,0.05);border:1px solid rgba(56,189,248,0.15);border-radius:10px;padding:.9rem 1.1rem;margin-top:.5rem;font-family:var(--mono);font-size:13px;color:var(--text-muted);line-height:1.9}
+.sc-formula strong{color:var(--text)}.sc-formula em{color:var(--accent);font-style:normal}
+.sc-sep{height:1px;background:var(--border);margin:1.2rem 0}
+/* Color bands */
+.bands-container{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:1.2rem;align-items:flex-end}
+.band-item{display:flex;flex-direction:column;align-items:center;gap:5px}
+.band-item label{font-size:10px;font-family:var(--mono);color:var(--text-dim);text-transform:uppercase;letter-spacing:.05em}
+.band-swatch{width:40px;height:14px;border-radius:3px;border:1px solid rgba(255,255,255,0.2)}
+.band-item select{background:var(--surface2);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:6px 8px;font-size:12px;font-family:var(--sans);outline:none;cursor:pointer;width:90px;appearance:none;-webkit-appearance:none;text-align:center}
+/* AWG */
+.awg-scroll{overflow-x:auto;margin-top:1rem;border-radius:12px;border:1px solid var(--border)}
+.awg-table{width:100%;border-collapse:collapse;font-size:13px;font-family:var(--mono)}
+.awg-table th{text-align:left;padding:10px 14px;color:var(--text-dim);font-size:10px;text-transform:uppercase;letter-spacing:.07em;border-bottom:1px solid var(--border);background:var(--surface2);white-space:nowrap}
+.awg-table td{padding:9px 14px;color:var(--text-muted);border-bottom:1px solid var(--border);white-space:nowrap}
+.awg-table tbody tr:last-child td{border-bottom:none}
+.awg-table tbody tr{cursor:pointer;transition:background .15s}
+.awg-table tbody tr:hover td{background:rgba(56,189,248,0.05)}
+.awg-table tbody tr.selected td{background:var(--accent-dim);color:var(--text)}
+.awg-table td.awg-num{color:var(--accent);font-weight:500}
+/* Bases */
+.bases-grid{display:grid;grid-template-columns:auto 1fr;gap:8px 14px;align-items:center;margin:1rem 0}
+.base-lbl{font-size:11px;font-family:var(--mono);color:var(--text-dim);text-transform:uppercase;letter-spacing:.06em;white-space:nowrap}
+.base-val{font-family:var(--mono);font-size:14px;color:var(--green);background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:8px 14px;word-break:break-all;cursor:pointer;transition:all .15s}
+.base-val:hover{border-color:rgba(56,189,248,0.4)}
+.base-val.highlight{border-color:rgba(56,189,248,0.5);color:var(--accent)}
+.copy-tip{font-size:11px;color:var(--text-dim);font-family:var(--mono);margin-top:8px}
+/* Sections */
+.features{max-width:1100px;margin:5rem auto 0;padding:0 2rem 5rem}
+.section-label{text-align:center;font-size:11px;font-family:var(--mono);color:var(--text-dim);letter-spacing:.12em;text-transform:uppercase;margin-bottom:1rem}
+.section-title{text-align:center;font-size:1.8rem;font-weight:700;margin-bottom:.5rem;letter-spacing:-.01em}
+.section-sub{text-align:center;color:var(--text-muted);font-size:15px;max-width:480px;margin:0 auto 3rem;font-weight:300}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem}
+.feature-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.5rem;transition:border-color .2s}
+.feature-card:hover{border-color:var(--border-strong)}
+.feature-icon{width:40px;height:40px;border-radius:10px;background:var(--accent-dim);border:1px solid rgba(56,189,248,0.2);display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:1rem}
+.feature-card h3{font-size:15px;font-weight:600;margin-bottom:6px}
+.feature-card p{font-size:13px;color:var(--text-muted);line-height:1.6}
+.ad-slot{max-width:780px;margin:0 auto 3rem;padding:0 2rem}
+.ad-placeholder{background:var(--surface);border:1px dashed var(--border-strong);border-radius:12px;height:90px;display:flex;align-items:center;justify-content:center;color:var(--text-dim);font-size:12px;font-family:var(--mono);letter-spacing:.05em}
+.cats-section{max-width:1100px;margin:0 auto;padding:0 2rem 4rem}
+.cats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+.cat-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.2rem;text-align:center;cursor:pointer;transition:all .2s;text-decoration:none}
+.cat-card:hover{border-color:rgba(56,189,248,0.3);background:var(--surface2);transform:translateY(-2px)}
+.cat-card.elec{border-color:rgba(251,191,36,0.15)}
+.cat-card.elec:hover{border-color:rgba(251,191,36,0.45)}
+.cat-card-icon{font-size:24px;margin-bottom:8px}
+.cat-card-name{font-size:13px;font-weight:600;color:var(--text)}
+.cat-card-count{font-size:11px;color:var(--text-dim);margin-top:2px;font-family:var(--mono)}
+footer{border-top:1px solid var(--border);padding:2rem;text-align:center}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+footer p{font-size:13px;color:var(--text-dim)}
+footer a{color:var(--text-dim);text-decoration:none}
+footer a:hover{color:var(--text-muted)}
+@media(max-width:600px){.converter-grid{grid-template-columns:1fr}.swap-btn{align-self:center;transform:rotate(90deg)}.swap-btn:hover{transform:rotate(270deg)}nav{display:none}h1{font-size:2rem}.hero{padding:3rem 1.5rem 2rem}.result-value{font-size:1.5rem}.sc-row{grid-template-columns:1fr}}
+</style>
+<style>
+#particle-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.45}
+body>*:not(#particle-canvas){position:relative;z-index:1}
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P0H6GL7SEV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-P0H6GL7SEV');
+</script>
+</head>
+<body>
+<canvas id="particle-canvas"></canvas>
+<header>
+  <div class="header-inner">
+    <a href="#" class="logo"><div class="logo-icon">∫</div><span class="logo-text">Física<span>Convert</span></span></a>
+    <nav><a href="#conversor">Conversor</a><a href="#categorias">Categorías</a><a href="#acerca">Acerca</a></nav>
+  </div>
+</header>
+<section class="hero">
+  <div class="badge">Sistema Internacional de Unidades</div>
+  <h1>Conversor de <span class="highlight">Unidades</span></h1>
+  <div class="physics-eqs">
+    <span>E = mc²</span><span class="eq-dot">·</span>
+    <span>F = ma</span><span class="eq-dot">·</span>
+    <span>∇ × B = μ₀J</span><span class="eq-dot">·</span>
+    <span>ΔxΔp ≥ ℏ/2</span><span class="eq-dot">·</span>
+    <span>∮E·dA = Q/ε₀</span>
+  </div>
+</section>
+<div class="categories-wrap" id="conversor">
+  <div class="categories" id="cat-tabs">
+    <button class="cat-btn active" data-cat="longitud">📏 Longitud</button>
+    <button class="cat-btn" data-cat="masa">⚖️ Masa</button>
+    <button class="cat-btn" data-cat="temperatura">🌡️ Temperatura</button>
+    <button class="cat-btn" data-cat="velocidad">💨 Velocidad</button>
+    <button class="cat-btn" data-cat="fuerza">🔩 Fuerza</button>
+    <button class="cat-btn" data-cat="energia">⚡ Energía</button>
+    <button class="cat-btn" data-cat="presion">🧪 Presión</button>
+    <button class="cat-btn" data-cat="tiempo">⏱️ Tiempo</button>
+    <button class="cat-btn" data-cat="area">📐 Área</button>
+    <button class="cat-btn" data-cat="angulo">📐 Ángulo</button>
+    <button class="cat-btn" data-cat="campo_mag">🧲 Campo Mag.</button>
+    <button class="cat-btn" data-cat="radiacion">☢️ Radiación</button>
+    <button class="cat-btn" data-cat="optica">🔭 Óptica</button>
+  </div>
+  <p class="converter-hint">En español · Con fórmulas explicadas · Sistema Internacional</p>
+</div>
+<div class="converter-wrap" id="converter-wrap">
+  <div class="converter-card">
+    <div class="converter-grid">
+      <div class="input-group"><label>Valor de entrada</label><input type="number" id="input-val" placeholder="Ej: 100" value="1" step="any"></div>
+      <button class="swap-btn" id="swap-btn" title="Intercambiar">⇄</button>
+      <div class="input-group"><label>Resultado</label><input type="text" id="output-val" readonly placeholder="—" style="background:var(--surface);color:var(--green)"></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem">
+      <div class="input-group"><label>Convertir de</label><select id="unit-from"></select></div>
+      <div class="input-group"><label>Convertir a</label><select id="unit-to"></select></div>
+    </div>
+    <div class="result-box"><div class="result-label">Resultado</div><div><span class="result-value" id="result-big">—</span><span class="result-unit" id="result-unit-label"></span></div></div>
+    <div class="formula-box"><div class="formula-label">Fórmula de conversión</div><div class="formula-text" id="formula-display">Seleccioná las unidades para ver la fórmula.</div></div>
+  </div>
+</div>
+<div class="special-wrap" id="special-wrap"></div>
+<div class="ad-slot"><div class="ad-placeholder">[ Espacio publicitario — 728×90 ]</div></div>
+<section class="features" id="acerca">
+  <div class="section-label">¿Por qué FísicaConvert?</div>
+  <h2 class="section-title">Diseñada para estudiantes</h2>
+  <p class="section-sub">Sin complicaciones. Todo en el Sistema Internacional, con fórmulas visibles.</p>
+  <div class="features-grid">
+    <div class="feature-card"><div class="feature-icon">🇦🇷</div><h3>100% en español</h3><p>Nombres, fórmulas y explicaciones en español rioplatense.</p></div>
+    <div class="feature-card"><div class="feature-icon">∫</div><h3>Fórmulas visibles</h3><p>Cada conversión muestra la fórmula matemática. Aprendés mientras usás.</p></div>
+    <div class="feature-card"><div class="feature-icon">📱</div><h3>Rápida y simple</h3><p>Resultado instantáneo mientras escribís. Sin botones de "calcular".</p></div>
+  </div>
+</section>
+<section class="cats-section" id="categorias">
+  <div class="section-label">Categorías disponibles</div>
+  <h2 class="section-title">¿Qué necesitás convertir?</h2>
+  <p class="section-sub">13 herramientas para física y matemáticas.</p>
+  <div class="cats-grid">
+    <div class="cat-card" onclick="setCategory('longitud')"><div class="cat-card-icon">📏</div><div class="cat-card-name">Longitud</div><div class="cat-card-count">8 unidades</div></div>
+    <div class="cat-card" onclick="setCategory('masa')"><div class="cat-card-icon">⚖️</div><div class="cat-card-name">Masa</div><div class="cat-card-count">7 unidades</div></div>
+    <div class="cat-card" onclick="setCategory('temperatura')"><div class="cat-card-icon">🌡️</div><div class="cat-card-name">Temperatura</div><div class="cat-card-count">3 unidades</div></div>
+    <div class="cat-card" onclick="setCategory('velocidad')"><div class="cat-card-icon">💨</div><div class="cat-card-name">Velocidad</div><div class="cat-card-count">5 unidades</div></div>
+    <div class="cat-card" onclick="setCategory('fuerza')"><div class="cat-card-icon">🔩</div><div class="cat-card-name">Fuerza</div><div class="cat-card-count">5 unidades</div></div>
+    <div class="cat-card" onclick="setCategory('energia')"><div class="cat-card-icon">⚡</div><div class="cat-card-name">Energía</div><div class="cat-card-count">6 unidades</div></div>
+    <div class="cat-card" onclick="setCategory('presion')"><div class="cat-card-icon">🧪</div><div class="cat-card-name">Presión</div><div class="cat-card-count">13 unidades</div></div>
+    <div class="cat-card" onclick="setCategory('tiempo')"><div class="cat-card-icon">⏱️</div><div class="cat-card-name">Tiempo</div><div class="cat-card-count">6 unidades</div></div>
+    <div class="cat-card" onclick="setCategory('area')"><div class="cat-card-icon">📐</div><div class="cat-card-name">Área</div><div class="cat-card-count">12 unidades</div></div>
+    <div class="cat-card" onclick="setCategory('angulo')"><div class="cat-card-icon">📐</div><div class="cat-card-name">Ángulo</div><div class="cat-card-count">5 unidades</div></div>
+    <div class="cat-card" onclick="setCategory('campo_mag')"><div class="cat-card-icon">🧲</div><div class="cat-card-name">Campo Magnético</div><div class="cat-card-count">6 unidades</div></div>
+    <div class="cat-card" onclick="setCategory('radiacion')"><div class="cat-card-icon">☢️</div><div class="cat-card-name">Radiación</div><div class="cat-card-count">actividad · dosis</div></div>
+    <div class="cat-card" onclick="setCategory('optica')"><div class="cat-card-icon">🔭</div><div class="cat-card-name">Óptica</div><div class="cat-card-count">espectro · lentes</div></div>
+  </div>
+</section>
+<footer><div class="footer-inner"><p>© 2025 FísicaConvert. Hecho para estudiantes hispanohablantes.</p><p><a href="#">Privacidad</a> · <a href="#">Contacto</a></p></div></footer>
+<script>
+const UNITS={
+  longitud:{label:"Longitud",units:[{id:"km",name:"Kilómetro (km)",toBase:v=>v*1000,fromBase:v=>v/1000},{id:"m",name:"Metro (m)",toBase:v=>v,fromBase:v=>v},{id:"cm",name:"Centímetro (cm)",toBase:v=>v*.01,fromBase:v=>v*100},{id:"mm",name:"Milímetro (mm)",toBase:v=>v*.001,fromBase:v=>v*1000},{id:"um",name:"Micrómetro (μm)",toBase:v=>v*1e-6,fromBase:v=>v*1e6},{id:"nm",name:"Nanómetro (nm)",toBase:v=>v*1e-9,fromBase:v=>v*1e9},{id:"in",name:"Pulgada (in)",toBase:v=>v*.0254,fromBase:v=>v/.0254},{id:"ft",name:"Pie (ft)",toBase:v=>v*.3048,fromBase:v=>v/.3048}],formula:(f,t,v,r)=>{const m={"km→m":`km×1000`,"m→km":`m÷1000`,"m→cm":`m×100`,"cm→m":`cm÷100`,"m→mm":`m×1000`,"cm→mm":`cm×10`,"in→cm":`in×2.54`,"cm→in":`cm÷2.54`,"ft→m":`ft×0.3048`,"m→ft":`m÷0.3048`};const k=`${f}→${t}`;return m[k]?`${v} ${f} <em>${m[k]}</em> = <strong>${r} ${t}</strong>`:gF(f,t,v,r);}},
+  masa:{label:"Masa",units:[{id:"t",name:"Tonelada (t)",toBase:v=>v*1000,fromBase:v=>v/1000},{id:"kg",name:"Kilogramo (kg)",toBase:v=>v,fromBase:v=>v},{id:"g",name:"Gramo (g)",toBase:v=>v*.001,fromBase:v=>v*1000},{id:"mg",name:"Miligramo (mg)",toBase:v=>v*1e-6,fromBase:v=>v*1e6},{id:"ug",name:"Microgramo (μg)",toBase:v=>v*1e-9,fromBase:v=>v*1e9},{id:"lb",name:"Libra (lb)",toBase:v=>v*.4536,fromBase:v=>v/.4536}],formula:(f,t,v,r)=>{const m={"kg→g":"×1000","g→kg":"÷1000","t→kg":"×1000","kg→t":"÷1000","lb→kg":"×0.4536","kg→lb":"÷0.4536","g→mg":"×1000","mg→g":"÷1000"};const k=`${f}→${t}`;return m[k]?`${v} ${f} <em>${m[k]}</em> = <strong>${r} ${t}</strong>`:gF(f,t,v,r);}},
+  temperatura:{label:"Temperatura",units:[{id:"C",name:"Celsius (°C)",toBase:v=>v,fromBase:v=>v},{id:"K",name:"Kelvin (K)",toBase:v=>v-273.15,fromBase:v=>v+273.15},{id:"F",name:"Fahrenheit (°F)",toBase:v=>(v-32)*5/9,fromBase:v=>v*9/5+32}],formula:(f,t,v,r)=>{if(f==="C"&&t==="K")return`K=°C+273.15 → ${v}+273.15=<strong>${r}K</strong>`;if(f==="K"&&t==="C")return`°C=K−273.15 → ${v}−273.15=<strong>${r}°C</strong>`;if(f==="C"&&t==="F")return`°F=(°C×9/5)+32 → (${v}×1.8)+32=<strong>${r}°F</strong>`;if(f==="F"&&t==="C")return`°C=(°F−32)×5/9 → (${v}−32)×0.556=<strong>${r}°C</strong>`;if(f==="F"&&t==="K")return`K=(°F−32)×5/9+273.15=<strong>${r}K</strong>`;if(f==="K"&&t==="F")return`°F=(K−273.15)×9/5+32=<strong>${r}°F</strong>`;return`<strong>${v} ${f} = ${r} ${t}</strong>`;}},
+  velocidad:{label:"Velocidad",units:[{id:"ms",name:"Metro/segundo (m/s)",toBase:v=>v,fromBase:v=>v},{id:"kmh",name:"Kilómetro/hora (km/h)",toBase:v=>v/3.6,fromBase:v=>v*3.6},{id:"mph",name:"Milla/hora (mph)",toBase:v=>v*.44704,fromBase:v=>v/.44704},{id:"kn",name:"Nudo (kn)",toBase:v=>v*.5144,fromBase:v=>v/.5144}],formula:(f,t,v,r)=>{if(f==="kmh"&&t==="ms")return`m/s=km/h÷3.6 → ${v}÷3.6=<strong>${r}m/s</strong>`;if(f==="ms"&&t==="kmh")return`km/h=m/s×3.6 → ${v}×3.6=<strong>${r}km/h</strong>`;return gF(f,t,v,r);}},
+  fuerza:{label:"Fuerza",units:[{id:"N",name:"Newton (N)",toBase:v=>v,fromBase:v=>v},{id:"kN",name:"Kilonewton (kN)",toBase:v=>v*1000,fromBase:v=>v/1000},{id:"dyn",name:"Dina (dyn)",toBase:v=>v*1e-5,fromBase:v=>v*1e5},{id:"kgf",name:"Kilogramo-fuerza (kgf)",toBase:v=>v*9.80665,fromBase:v=>v/9.80665},{id:"lbf",name:"Libra-fuerza (lbf)",toBase:v=>v*4.44822,fromBase:v=>v/4.44822}],formula:(f,t,v,r)=>{if(f==="N"&&t==="kN")return`kN=N÷1000 → ${v}÷1000=<strong>${r}kN</strong>`;if(f==="kN"&&t==="N")return`N=kN×1000 → ${v}×1000=<strong>${r}N</strong>`;if(f==="kgf"&&t==="N")return`N=kgf×9.80665 → ${v}×9.80665=<strong>${r}N</strong>`;if(f==="N"&&t==="kgf")return`kgf=N÷9.80665 → ${v}÷9.80665=<strong>${r}kgf</strong>`;return gF(f,t,v,r);}},
+  energia:{label:"Energía",units:[{id:"J",name:"Julio (J)",toBase:v=>v,fromBase:v=>v},{id:"kJ",name:"Kilojulio (kJ)",toBase:v=>v*1000,fromBase:v=>v/1000},{id:"cal",name:"Caloría (cal)",toBase:v=>v*4.184,fromBase:v=>v/4.184},{id:"kcal",name:"Kilocaloría (kcal)",toBase:v=>v*4184,fromBase:v=>v/4184},{id:"eV",name:"Electrón-volt (eV)",toBase:v=>v*1.602e-19,fromBase:v=>v/1.602e-19},{id:"kWh",name:"Kilovatio-hora (kWh)",toBase:v=>v*3.6e6,fromBase:v=>v/3.6e6}],formula:(f,t,v,r)=>{if(f==="J"&&t==="cal")return`cal=J÷4.184 → ${v}÷4.184=<strong>${r}cal</strong>`;if(f==="cal"&&t==="J")return`J=cal×4.184 → ${v}×4.184=<strong>${r}J</strong>`;if(f==="J"&&t==="kJ")return`kJ=J÷1000 → ${v}÷1000=<strong>${r}kJ</strong>`;if(f==="kJ"&&t==="J")return`J=kJ×1000 → ${v}×1000=<strong>${r}J</strong>`;if(f==="kcal"&&t==="J")return`J=kcal×4184 → ${v}×4184=<strong>${r}J</strong>`;if(f==="kWh"&&t==="J")return`J=kWh×3.6×10⁶ → ${v}×3.6e6=<strong>${r}J</strong>`;return gF(f,t,v,r);}},
+  presion:{label:"Presión",units:[{id:"Pa",name:"Pascal (Pa)",toBase:v=>v,fromBase:v=>v},{id:"hPa",name:"Hectopascal (hPa)",toBase:v=>v*100,fromBase:v=>v/100},{id:"kPa",name:"Kilopascal (kPa)",toBase:v=>v*1000,fromBase:v=>v/1000},{id:"MPa",name:"Megapascal (MPa)",toBase:v=>v*1e6,fromBase:v=>v/1e6},{id:"bar",name:"Bar (bar)",toBase:v=>v*1e5,fromBase:v=>v/1e5},{id:"mbar",name:"Milibar (mbar)",toBase:v=>v*100,fromBase:v=>v/100},{id:"atm",name:"Atmósfera (atm)",toBase:v=>v*101325,fromBase:v=>v/101325},{id:"mmHg",name:"mmHg / Torr",toBase:v=>v*133.322,fromBase:v=>v/133.322},{id:"mH2O",name:"Metro col. agua (mH₂O)",toBase:v=>v*9806.65,fromBase:v=>v/9806.65},{id:"psi",name:"Libra/pulg² (psi)",toBase:v=>v*6894.76,fromBase:v=>v/6894.76}],formula:(f,t,v,r)=>{if(f==="atm"&&t==="Pa")return`Pa=atm×101325 → ${v}×101325=<strong>${r}Pa</strong>`;if(f==="Pa"&&t==="atm")return`atm=Pa÷101325 → ${v}÷101325=<strong>${r}atm</strong>`;if(f==="bar"&&t==="Pa")return`Pa=bar×100000 → ${v}×10⁵=<strong>${r}Pa</strong>`;if(f==="kPa"&&t==="Pa")return`Pa=kPa×1000 → ${v}×1000=<strong>${r}Pa</strong>`;if(f==="psi"&&t==="Pa")return`Pa=psi×6894.76 → ${v}×6894.76=<strong>${r}Pa</strong>`;if(f==="psi"&&t==="bar")return`bar=psi×0.06895 → ${v}×0.06895=<strong>${r}bar</strong>`;if(f==="atm"&&t==="psi")return`psi=atm×14.696 → ${v}×14.696=<strong>${r}psi</strong>`;if(f==="MPa"&&t==="bar")return`bar=MPa×10 → ${v}×10=<strong>${r}bar</strong>`;return gF(f,t,v,r);}},
+  tiempo:{label:"Tiempo",units:[{id:"s",name:"Segundo (s)",toBase:v=>v,fromBase:v=>v},{id:"ms",name:"Milisegundo (ms)",toBase:v=>v*.001,fromBase:v=>v*1000},{id:"us",name:"Microsegundo (μs)",toBase:v=>v*1e-6,fromBase:v=>v*1e6},{id:"min",name:"Minuto (min)",toBase:v=>v*60,fromBase:v=>v/60},{id:"h",name:"Hora (h)",toBase:v=>v*3600,fromBase:v=>v/3600},{id:"d",name:"Día (d)",toBase:v=>v*86400,fromBase:v=>v/86400}],formula:(f,t,v,r)=>{if(f==="h"&&t==="s")return`s=h×3600 → ${v}×3600=<strong>${r}s</strong>`;if(f==="s"&&t==="h")return`h=s÷3600 → ${v}÷3600=<strong>${r}h</strong>`;if(f==="min"&&t==="s")return`s=min×60 → ${v}×60=<strong>${r}s</strong>`;if(f==="s"&&t==="min")return`min=s÷60 → ${v}÷60=<strong>${r}min</strong>`;if(f==="d"&&t==="h")return`h=d×24 → ${v}×24=<strong>${r}h</strong>`;return gF(f,t,v,r);}},
+  area:{label:"Área",units:[{id:"km2",name:"Kilómetro² (km²)",toBase:v=>v*1e6,fromBase:v=>v/1e6},{id:"ha",name:"Hectárea (ha)",toBase:v=>v*10000,fromBase:v=>v/10000},{id:"m2",name:"Metro² (m²)",toBase:v=>v,fromBase:v=>v},{id:"cm2",name:"Centímetro² (cm²)",toBase:v=>v*1e-4,fromBase:v=>v*1e4},{id:"mm2",name:"Milímetro² (mm²)",toBase:v=>v*1e-6,fromBase:v=>v*1e6},{id:"in2",name:"Pulgada² (in²)",toBase:v=>v*6.4516e-4,fromBase:v=>v/6.4516e-4},{id:"ft2",name:"Pie² (ft²)",toBase:v=>v*.092903,fromBase:v=>v/.092903},{id:"ac",name:"Acre (ac)",toBase:v=>v*4046.86,fromBase:v=>v/4046.86},{id:"mi2",name:"Milla² (mi²)",toBase:v=>v*2.58999e6,fromBase:v=>v/2.58999e6}],formula:(f,t,v,r)=>{if(f==="m2"&&t==="cm2")return`cm²=m²×10000 → ${v}×10⁴=<strong>${r}cm²</strong>`;if(f==="cm2"&&t==="m2")return`m²=cm²÷10000 → ${v}÷10⁴=<strong>${r}m²</strong>`;if(f==="ha"&&t==="m2")return`m²=ha×10000 → ${v}×10000=<strong>${r}m²</strong>`;if(f==="m2"&&t==="ha")return`ha=m²÷10000 → ${v}÷10000=<strong>${r}ha</strong>`;if(f==="ft2"&&t==="m2")return`m²=ft²×0.0929 → ${v}×0.0929=<strong>${r}m²</strong>`;if(f==="in2"&&t==="cm2")return`cm²=in²×6.4516 → ${v}×6.4516=<strong>${r}cm²</strong>`;return gF(f,t,v,r);}},
+  angulo:{label:"Ángulo",units:[{id:"deg",name:"Grado (°)",toBase:v=>v*Math.PI/180,fromBase:v=>v*180/Math.PI},{id:"rad",name:"Radián (rad)",toBase:v=>v,fromBase:v=>v},{id:"rev",name:"Revolución (rev)",toBase:v=>v*2*Math.PI,fromBase:v=>v/(2*Math.PI)},{id:"amin",name:"Minuto de arco (′)",toBase:v=>v*Math.PI/10800,fromBase:v=>v*10800/Math.PI},{id:"asec",name:"Segundo de arco (″)",toBase:v=>v*Math.PI/648000,fromBase:v=>v*648000/Math.PI}],formula:(f,t,v,r)=>{if(f==="deg"&&t==="rad")return`rad=°×π/180=${v}×π/180=<strong>${r}rad</strong>`;if(f==="rad"&&t==="deg")return`°=rad×180/π=${v}×180/π=<strong>${r}°</strong>`;if(f==="deg"&&t==="grad")return`grad=°×10/9=${v}×10/9=<strong>${r}grad</strong>`;if(f==="grad"&&t==="deg")return`°=grad×9/10=${v}×0.9=<strong>${r}°</strong>`;if(f==="deg"&&t==="amin")return`′=°×60=${v}×60=<strong>${r}′</strong>`;if(f==="amin"&&t==="asec")return`″=′×60=${v}×60=<strong>${r}″</strong>`;if(f==="deg"&&t==="asec")return`″=°×3600=${v}×3600=<strong>${r}″</strong>`;if(f==="rev"&&t==="deg")return`°=rev×360=${v}×360=<strong>${r}°</strong>`;if(f==="rev"&&t==="rad")return`rad=rev×2π=${v}×2π=<strong>${r}rad</strong>`;return gF(f,t,v,r);}},
+  campo_mag:{label:"Campo Magnético (B)",units:[{id:"T",name:"Tesla (T)",toBase:v=>v,fromBase:v=>v},{id:"mT",name:"Militesla (mT)",toBase:v=>v*1e-3,fromBase:v=>v*1e3},{id:"uT",name:"Microtesla (μT)",toBase:v=>v*1e-6,fromBase:v=>v*1e6},{id:"nT",name:"Nanotesla (nT)",toBase:v=>v*1e-9,fromBase:v=>v*1e9},{id:"G",name:"Gauss (G)",toBase:v=>v*1e-4,fromBase:v=>v*1e4}],formula:(f,t,v,r)=>{if(f==="T"&&t==="G")return`G=T×10000=${v}×10⁴=<strong>${r}G</strong>`;if(f==="G"&&t==="T")return`T=G÷10000=${v}÷10⁴=<strong>${r}T</strong>`;if(f==="T"&&t==="mT")return`mT=T×1000=${v}×1000=<strong>${r}mT</strong>`;if(f==="G"&&t==="uT")return`μT=G×100=${v}×100=<strong>${r}μT</strong>`;if(f==="uT"&&t==="G")return`G=μT÷100=${v}÷100=<strong>${r}G</strong>`;if(f==="T"&&t==="Wbm2")return`1 T = 1 Wb/m² → <strong>${r}Wb/m²</strong>`;return gF(f,t,v,r);}},
+};
+
+function gF(f,t,v,r){return`<strong>${v} ${f}</strong> = <em>${r}</em> ${t}`}
+function fmtN(n){
+  if(n===null||n===undefined||isNaN(n)||!isFinite(n))return"—";
+  if(Math.abs(n)>=1e10||(Math.abs(n)<1e-6&&n!==0))return n.toExponential(4).replace('.',',');
+  const s=parseFloat(n.toPrecision(8));
+  return s.toLocaleString('es-AR',{maximumFractionDigits:8});
+}
+
+let currentCat="longitud";
+function populateUnits(cat){const d=UNITS[cat],fs=document.getElementById("unit-from"),ts=document.getElementById("unit-to");fs.innerHTML="";ts.innerHTML="";d.units.forEach(u=>{fs.appendChild(new Option(u.name,u.id));ts.appendChild(new Option(u.name,u.id))});ts.selectedIndex=1;calculate()}
+function calculate(){const cat=UNITS[currentCat],fId=document.getElementById("unit-from").value,tId=document.getElementById("unit-to").value,val=parseFloat(document.getElementById("input-val").value);if(isNaN(val)){["output-val","result-big"].forEach(i=>{document.getElementById(i).value||"";document.getElementById(i).textContent="—"});document.getElementById("result-unit-label").textContent="";document.getElementById("formula-display").innerHTML="Ingresá un valor para ver la fórmula.";return}const fU=cat.units.find(u=>u.id===fId),tU=cat.units.find(u=>u.id===tId);if(!fU||!tU)return;const base=fU.toBase(val),result=tU.fromBase(base),rs=fmtN(result);if(rs==="—"){document.getElementById("output-val").value="—";document.getElementById("result-big").textContent="—";document.getElementById("result-unit-label").textContent="";document.getElementById("formula-display").innerHTML="Valor inválido para esta conversión.";return}document.getElementById("output-val").value=rs;document.getElementById("result-big").textContent=rs;document.getElementById("result-unit-label").textContent=tId;document.getElementById("formula-display").innerHTML=cat.formula(fId,tId,val,rs)}
+
+document.getElementById("cat-tabs").addEventListener("click",e=>{const b=e.target.closest(".cat-btn");if(b)setCategory(b.dataset.cat)});
+document.getElementById("input-val").addEventListener("input",calculate);
+document.getElementById("unit-from").addEventListener("change",calculate);
+document.getElementById("unit-to").addEventListener("change",calculate);
+document.getElementById("swap-btn").addEventListener("click",()=>{const f=document.getElementById("unit-from"),t=document.getElementById("unit-to"),tmp=f.value;f.value=t.value;t.value=tmp;calculate()});
+
+/* ── SPECIAL CALCULATORS ── */
+const SP={};
+
+/* OPTICA */
+const C_LIGHT=299792458;
+const H_PLANCK=6.62607015e-34;
+const EV=1.602176634e-19;
+const EM_REGIONS=[
+  {name:'Rayos gamma',max:1e-12,color:'#c084fc'},
+  {name:'Rayos X',max:10e-9,color:'#818cf8'},
+  {name:'Ultravioleta',max:400e-9,color:'#a78bfa'},
+  {name:'Violeta',max:450e-9,color:'#7c3aed'},
+  {name:'Azul',max:495e-9,color:'#2563eb'},
+  {name:'Verde',max:560e-9,color:'#16a34a'},
+  {name:'Amarillo',max:590e-9,color:'#ca8a04'},
+  {name:'Naranja',max:625e-9,color:'#ea580c'},
+  {name:'Rojo',max:700e-9,color:'#dc2626'},
+  {name:'Infrarrojo',max:1e-3,color:'#991b1b'},
+  {name:'Microondas',max:0.1,color:'#7c2d12'},
+  {name:'Radio',max:Infinity,color:'#374151'}
+];
+function getRegion(lambdaM){for(const r of EM_REGIONS)if(lambdaM<r.max)return r;return EM_REGIONS[EM_REGIONS.length-1]}
+function visColor(lambdaM){const nm=lambdaM*1e9;if(nm<380||nm>700)return null;if(nm<450)return`hsl(${270+(380-nm)*0.5},90%,60%)`;if(nm<495)return`hsl(${240-(nm-450)*1.5},90%,60%)`;if(nm<560)return`hsl(${120+(nm-495)*0.9},85%,40%)`;if(nm<590)return`hsl(${60-(nm-560)*1.5},95%,50%)`;if(nm<625)return`hsl(${30-(nm-590)*0.6},95%,50%)`;return`hsl(${10-(nm-625)*0.05},95%,45%)`}
+
+SP.optica={
+  render(){return`<div class="special-card"><div class="sc-title">🔭 Óptica — Espectro EM · Dioptrías</div>
+<div class="sc-toggle" id="optt"><button class="active" data-v="em">🌈 Longitud de onda ↔ Frecuencia ↔ Energía</button><button data-v="diop">🔍 Dioptrías ↔ Focal</button></div>
+<div id="opt-em">
+  <div class="sc-row">
+    <div class="sc-field"><label>Longitud de onda (λ)</label><div class="sc-field-inner"><input type="number" id="optlam" value="550" step="any" oninput="SP.optica.calcEM('lam')"><select class="unit-sel" id="optlamu" onchange="SP.optica.calcEM('lam')"><option value="1e-12">pm</option><option value="1e-10">Å</option><option value="1e-9" selected>nm</option><option value="1e-6">μm</option><option value="1e-2">cm</option><option value="1">m</option></select></div></div>
+    <div class="sc-field"><label>Frecuencia (f)</label><div class="sc-field-inner"><input type="number" id="optfreq" value="" step="any" oninput="SP.optica.calcEM('freq')" placeholder="auto"><select class="unit-sel" id="optfrequ" onchange="SP.optica.calcEM('freq')"><option value="1">Hz</option><option value="1e9">GHz</option><option value="1e12" selected>THz</option><option value="1e15">PHz</option></select></div></div>
+  </div>
+  <div class="sc-row single"><div class="sc-field"><label>Energía del fotón (E)</label><div class="sc-field-inner"><input type="number" id="optenergy" value="" step="any" oninput="SP.optica.calcEM('e')" placeholder="auto"><select class="unit-sel" id="opteu" onchange="SP.optica.calcEM('e')"><option value="1">J</option><option value="${EV}" selected>eV</option><option value="${EV*1e-3}">meV</option><option value="${EV*1e3}">keV</option></select></div></div></div>
+  <div class="sc-results">
+    <div class="sc-result-item"><span class="sc-result-lbl">Región del espectro</span><span class="sc-result-val" id="optregion" style="font-size:.95rem">—</span></div>
+    <div class="sc-result-item"><span class="sc-result-lbl">Color visible</span><div style="display:flex;align-items:center;gap:10px"><div id="optcolor" style="width:36px;height:20px;border-radius:4px;border:1px solid rgba(255,255,255,0.15);background:#1a2235"></div><span class="sc-result-val" id="optcolortxt" style="font-size:.9rem">—</span></div></div>
+    <div class="sc-result-item"><span class="sc-result-lbl">λ en metros</span><span><span class="sc-result-val" id="optlamsi" style="font-size:1rem">—</span><span class="sc-result-unit">m</span></span></div>
+  </div>
+  <div class="sc-formula" id="optform">Ingresá λ, f o E y los otros se calculan solos.</div>
+</div>
+<div id="opt-diop" style="display:none">
+  <div class="sc-toggle" id="diopdir"><button class="active" data-v="f2d">Focal → Dioptrías</button><button data-v="d2f">Dioptrías → Focal</button></div>
+  <div id="diop-f2d"><div class="sc-row"><div class="sc-field"><label>Distancia focal (f)</label><div class="sc-field-inner"><input type="number" id="diopf" value="25" step="any" oninput="SP.optica.calcDiop()"><select class="unit-sel" id="diopfu" onchange="SP.optica.calcDiop()"><option value="1e-3">mm</option><option value="1e-2" selected>cm</option><option value="1">m</option></select></div></div></div></div>
+  <div id="diop-d2f" style="display:none"><div class="sc-row single"><div class="sc-field"><label>Potencia óptica (D)</label><input type="number" id="diopd" value="4" step="any" oninput="SP.optica.calcDiop()"></div></div></div>
+  <div class="sc-results">
+    <div class="sc-result-item"><span class="sc-result-lbl">Dioptrías (D)</span><span><span class="sc-result-val" id="dres1">—</span><span class="sc-result-unit">D</span></span></div>
+    <div class="sc-result-item"><span class="sc-result-lbl">Focal (mm)</span><span><span class="sc-result-val" id="dres2">—</span><span class="sc-result-unit">mm</span></span></div>
+    <div class="sc-result-item"><span class="sc-result-lbl">Focal (cm)</span><span><span class="sc-result-val" id="dres3">—</span><span class="sc-result-unit">cm</span></span></div>
+    <div class="sc-result-item"><span class="sc-result-lbl">Tipo de lente</span><span class="sc-result-val" id="drestipo" style="font-size:.9rem">—</span></div>
+  </div>
+  <div class="sc-formula" id="diopform">D = 1/f (f en metros)</div>
+</div></div>`},
+  _mode:'em',_ddir:'f2d',
+  init(){
+    this._mode='em';this._ddir='f2d';
+    document.getElementById('optt').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;document.querySelectorAll('#optt button').forEach(x=>x.classList.remove('active'));b.classList.add('active');this._mode=b.dataset.v;document.getElementById('opt-em').style.display=this._mode==='em'?'block':'none';document.getElementById('opt-diop').style.display=this._mode==='diop'?'block':'none';if(this._mode==='em')this.calcEM('lam');else this.calcDiop()});
+    document.getElementById('diopdir').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;document.querySelectorAll('#diopdir button').forEach(x=>x.classList.remove('active'));b.classList.add('active');this._ddir=b.dataset.v;document.getElementById('diop-f2d').style.display=this._ddir==='f2d'?'block':'none';document.getElementById('diop-d2f').style.display=this._ddir==='d2f'?'block':'none';this.calcDiop()});
+    this.calcEM('lam')},
+  calcEM(src){
+    let lamM;
+    if(src==='lam'){const v=parseFloat(document.getElementById('optlam')?.value),u=parseFloat(document.getElementById('optlamu')?.value||1e-9);if(isNaN(v)||v<=0)return;lamM=v*u}
+    else if(src==='freq'){const v=parseFloat(document.getElementById('optfreq')?.value),u=parseFloat(document.getElementById('optfrequ')?.value||1e12);if(isNaN(v)||v<=0)return;lamM=C_LIGHT/(v*u)}
+    else{const v=parseFloat(document.getElementById('optenergy')?.value),u=parseFloat(document.getElementById('opteu')?.value||EV);if(isNaN(v)||v<=0)return;const eJ=v*u;lamM=H_PLANCK*C_LIGHT/eJ}
+    if(!lamM||lamM<=0)return;
+    const freqHz=C_LIGHT/lamM,eJ=H_PLANCK*freqHz,eEV=eJ/EV;
+    if(src!=='lam'){const lu=parseFloat(document.getElementById('optlamu')?.value||1e-9);document.getElementById('optlam').value=fmtN(lamM/lu)}
+    if(src!=='freq'){const fu=parseFloat(document.getElementById('optfrequ')?.value||1e12);document.getElementById('optfreq').value=fmtN(freqHz/fu)}
+    if(src!=='e'){const eu=parseFloat(document.getElementById('opteu')?.value||EV);document.getElementById('optenergy').value=fmtN(eJ/eu)}
+    const reg=getRegion(lamM);
+    document.getElementById('optregion').textContent=reg.name;
+    document.getElementById('optregion').style.color=reg.color;
+    const vc=visColor(lamM);
+    document.getElementById('optcolor').style.background=vc||'#1a2235';
+    document.getElementById('optcolortxt').textContent=vc?reg.name:'No visible';
+    document.getElementById('optlamsi').textContent=lamM.toExponential(4);
+    document.getElementById('optform').innerHTML=`λ = c/f = ${C_LIGHT.toExponential(3)} / ${fmtN(freqHz)} = <em>${lamM.toExponential(4)} m</em><br>E = h·f = ${H_PLANCK.toExponential(3)} × ${fmtN(freqHz)} = <strong>${fmtN(eEV)} eV</strong>`;
+  },
+  calcDiop(){
+    let fM,D;
+    if(this._ddir==='f2d'){const v=parseFloat(document.getElementById('diopf')?.value),u=parseFloat(document.getElementById('diopfu')?.value||1e-2);if(isNaN(v)||v===0)return;fM=v*u;D=1/fM}
+    else{D=parseFloat(document.getElementById('diopd')?.value);if(isNaN(D)||D===0)return;fM=1/D}
+    document.getElementById('dres1').textContent=fmtN(D);
+    document.getElementById('dres2').textContent=fmtN(fM*1000);
+    document.getElementById('dres3').textContent=fmtN(fM*100);
+    document.getElementById('drestipo').textContent=D>0?'Convergente (convexa)':D<0?'Divergente (cóncava)':'Plana';
+    document.getElementById('diopform').innerHTML=`D = 1/f = 1/${fmtN(fM)} m = <strong>${fmtN(D)} dioptrías</strong><br><em>${D>0?'Lente convergente: foco real, f > 0':'Lente divergente: foco virtual, f < 0'}</em>`}
+};
+
+/* RADIACION */
+const RAD_UNITS={
+  actividad:[
+    {id:'Bq',name:'Becquerel (Bq)',f:1},{id:'kBq',name:'kiloBecquerel (kBq)',f:1e3},{id:'MBq',name:'MegaBecquerel (MBq)',f:1e6},{id:'GBq',name:'GigaBecquerel (GBq)',f:1e9},
+    {id:'Ci',name:'Curie (Ci)',f:3.7e10},{id:'mCi',name:'miliCurie (mCi)',f:3.7e7},{id:'uCi',name:'microCurie (μCi)',f:3.7e4},{id:'nCi',name:'nanoCurie (nCi)',f:37}
+  ],
+  absorbida:[
+    {id:'Gy',name:'Gray (Gy)',f:1},{id:'mGy',name:'miliGray (mGy)',f:1e-3},{id:'uGy',name:'microGray (μGy)',f:1e-6},
+    {id:'rad',name:'Rad (rad)',f:0.01},{id:'erg_g',name:'erg/g',f:1e-4}
+  ],
+  equivalente:[
+    {id:'Sv',name:'Sievert (Sv)',f:1},{id:'mSv',name:'miliSievert (mSv)',f:1e-3},{id:'uSv',name:'microSievert (μSv)',f:1e-6},
+    {id:'rem',name:'Rem (rem)',f:0.01},{id:'mrem',name:'miliRem (mrem)',f:1e-5}
+  ]
+};
+const RAD_DESC={
+  actividad:'<em>Actividad:</em> cuántas desintegraciones nucleares ocurren por segundo. El Curie equivale a 3.7×10¹⁰ Bq (actividad del Radio-226).',
+  absorbida:'<em>Dosis absorbida:</em> energía depositada por unidad de masa de tejido. 1 Gray = 1 J/kg. El Rad es la unidad antigua (1 rad = 0.01 Gy).',
+  equivalente:'<em>Dosis equivalente:</em> dosis absorbida ponderada por el tipo de radiación (factor Q). 1 Sv = 1 Gy para fotones/electrones. El Rem es la unidad antigua (1 rem = 0.01 Sv).'
+};
+SP.radiacion={
+  render(){
+    const opts=t=>RAD_UNITS[t].map(u=>`<option value="${u.id}">${u.name}</option>`).join('');
+    return`<div class="special-card"><div class="sc-title">☢️ Radiación — Actividad · Dosis Absorbida · Dosis Equivalente</div>
+<div class="sc-toggle" id="radt"><button class="active" data-v="actividad">⚛️ Actividad</button><button data-v="absorbida">🎯 Dosis Absorbida</button><button data-v="equivalente">🛡️ Dosis Equivalente</button></div>
+<div class="sc-formula" id="raddesc" style="margin-bottom:1rem">${RAD_DESC.actividad}</div>
+<div class="sc-row">
+  <div class="sc-field"><label>Valor</label><input type="number" id="radval" value="1" step="any" oninput="SP.radiacion.calc()"></div>
+  <div class="sc-field"><label>Unidad origen</label><select id="radfrom" onchange="SP.radiacion.calc()">${opts('actividad')}</select></div>
+</div>
+<div class="sc-row single"><div class="sc-field"><label>Unidad destino</label><select id="radto" onchange="SP.radiacion.calc()">${opts('actividad')}</select></div></div>
+<div class="sc-results">
+  <div class="sc-result-item"><span class="sc-result-lbl">Resultado</span><span><span class="sc-result-val" id="radres">—</span><span class="sc-result-unit" id="radunit"></span></span></div>
+  <div class="sc-result-item"><span class="sc-result-lbl">En Bq / Gy / Sv (base SI)</span><span><span class="sc-result-val" id="radbase" style="font-size:1rem">—</span></span></div>
+</div>
+<div class="sc-formula" id="radform">Seleccioná las unidades para ver la fórmula.</div></div>`},
+  _t:'actividad',
+  init(){
+    this._t='actividad';
+    document.getElementById('radt').addEventListener('click',e=>{
+      const b=e.target.closest('button');if(!b)return;
+      document.querySelectorAll('#radt button').forEach(x=>x.classList.remove('active'));b.classList.add('active');
+      this._t=b.dataset.v;
+      const opts=RAD_UNITS[this._t].map(u=>`<option value="${u.id}">${u.name}</option>`).join('');
+      document.getElementById('radfrom').innerHTML=opts;
+      document.getElementById('radto').innerHTML=opts;
+      document.getElementById('radto').selectedIndex=1;
+      document.getElementById('raddesc').innerHTML=RAD_DESC[this._t];
+      this.calc()});
+    document.getElementById('radto').selectedIndex=1;
+    this.calc()},
+  calc(){
+    const units=RAD_UNITS[this._t];
+    const fId=document.getElementById('radfrom')?.value,tId=document.getElementById('radto')?.value;
+    const val=parseFloat(document.getElementById('radval')?.value);
+    if(isNaN(val))return;
+    const fU=units.find(u=>u.id===fId),tU=units.find(u=>u.id===tId);
+    if(!fU||!tU)return;
+    const base=val*fU.f,result=base/tU.f;
+    const baseNames={actividad:'Bq',absorbida:'Gy',equivalente:'Sv'};
+    document.getElementById('radres').textContent=fmtN(result);
+    document.getElementById('radunit').textContent=tId;
+    document.getElementById('radbase').textContent=fmtN(base)+' '+baseNames[this._t];
+    document.getElementById('radform').innerHTML=`${val} ${fId} × ${fmtN(fU.f)} = <em>${fmtN(base)} ${baseNames[this._t]}</em> ÷ ${fmtN(tU.f)} = <strong>${fmtN(result)} ${tId}</strong>`}
+};
+
+/* CATEGORY SWITCH */
+function setCategory(cat){
+  currentCat=cat;
+  document.querySelectorAll('.cat-btn').forEach(b=>b.classList.toggle('active',b.dataset.cat===cat));
+  const cw=document.getElementById('converter-wrap'),sw=document.getElementById('special-wrap');
+  if(SP[cat]){cw.style.display='none';sw.style.display='block';sw.innerHTML=SP[cat].render();SP[cat].init()}
+  else{sw.style.display='none';cw.style.display='block';populateUnits(cat)}
+  document.getElementById('conversor').scrollIntoView({behavior:'smooth'});
+}
+
+populateUnits('longitud');
+
+/* ── PARTICLE FIELD ── */
+(function(){
+  const canvas=document.getElementById('particle-canvas');
+  const ctx=canvas.getContext('2d');
+  let W,H,particles,mouse={x:-9999,y:-9999};
+  const PARTICLE_COUNT=90;
+  const CONNECT_DIST=140;
+  const REPEL_DIST=100;
+  const COLORS=['#38bdf8','#34d399','#818cf8','#60a5fa'];
+
+  function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight}
+
+  function mkParticle(){
+    return{
+      x:Math.random()*W, y:Math.random()*H,
+      vx:(Math.random()-.5)*.4, vy:(Math.random()-.5)*.4,
+      r:Math.random()*1.8+.8,
+      color:COLORS[Math.floor(Math.random()*COLORS.length)],
+      pulse:Math.random()*Math.PI*2,
+      pulseSpeed:.02+Math.random()*.02
+    }
+  }
+
+  function init(){resize();particles=Array.from({length:PARTICLE_COUNT},mkParticle)}
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    // update
+    particles.forEach(p=>{
+      p.pulse+=p.pulseSpeed;
+      // mouse repulsion
+      const dx=p.x-mouse.x, dy=p.y-mouse.y;
+      const dist=Math.sqrt(dx*dx+dy*dy);
+      if(dist<REPEL_DIST&&dist>0){
+        const force=(REPEL_DIST-dist)/REPEL_DIST*.6;
+        p.vx+=dx/dist*force;
+        p.vy+=dy/dist*force;
+      }
+      // dampen
+      p.vx*=.98; p.vy*=.98;
+      // clamp speed
+      const spd=Math.sqrt(p.vx*p.vx+p.vy*p.vy);
+      if(spd>1.4){p.vx=p.vx/spd*1.4;p.vy=p.vy/spd*1.4}
+      p.x+=p.vx; p.y+=p.vy;
+      if(p.x<0)p.x=W; if(p.x>W)p.x=0;
+      if(p.y<0)p.y=H; if(p.y>H)p.y=0;
+    });
+    // connections
+    for(let i=0;i<particles.length;i++){
+      for(let j=i+1;j<particles.length;j++){
+        const a=particles[i],b=particles[j];
+        const dx=a.x-b.x, dy=a.y-b.y;
+        const d=Math.sqrt(dx*dx+dy*dy);
+        if(d<CONNECT_DIST){
+          const alpha=(1-d/CONNECT_DIST)*.25;
+          ctx.beginPath();
+          ctx.strokeStyle=`rgba(56,189,248,${alpha})`;
+          ctx.lineWidth=.7;
+          ctx.moveTo(a.x,a.y);
+          ctx.lineTo(b.x,b.y);
+          ctx.stroke();
+        }
+      }
+    }
+    // dots
+    particles.forEach(p=>{
+      const glow=Math.sin(p.pulse)*.3+.7;
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r*glow,0,Math.PI*2);
+      ctx.fillStyle=p.color;
+      ctx.globalAlpha=glow*.8;
+      ctx.fill();
+      ctx.globalAlpha=1;
+    });
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize',()=>{resize()});
+  window.addEventListener('mousemove',e=>{mouse.x=e.clientX;mouse.y=e.clientY});
+  window.addEventListener('mouseleave',()=>{mouse.x=-9999;mouse.y=-9999});
+  init();draw();
+})();
+
+</script>
+</body>
+</html>
