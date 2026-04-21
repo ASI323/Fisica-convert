@@ -1,0 +1,10 @@
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "fisicaconvert.com" }],
+      "destination": "https://www.fisicaconvert.com/:path*",
+      "permanent": true
+    }
+  ]
+}
