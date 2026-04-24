@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convert Kilograms to Pounds (kg to lb) — Physics Tool</title>
+    <meta name="description" content="Quickly convert Kilograms to Pounds. Free physics unit converter with formula and step-by-step calculation.">
+    <link rel="alternate" hreflang="es" href="https://www.fisicaconvert.com/kilos-a-libras.html" />
+    <link rel="alternate" hreflang="en" href="https://www.fisicaconvert.com/kilograms-to-pounds.html" />
+    <style>body{font-family:sans-serif;padding:20px;max-width:800px;margin:auto;line-height:1.6}.box{border:2px solid #003366;padding:20px;border-radius:10px;background:#f9f9f9}input{padding:10px;width:120px;font-size:1.2em}</style>
+</head>
+<body>
+    <h1>Convert Kilograms to Pounds (kg to lb)</h1>
+    <div class="box">
+        <label>Mass in Kilograms:</label><br>
+        <input type="number" id="inputVal" placeholder="0" oninput="convert()">
+        <p>Result in <strong>Pounds</strong>:</p>
+        <div id="result" style="font-size: 2em; color: #003366;">0.00</div>
+    </div>
+    <h3>Formula: lb = kg × 2.20462</h3>
+    <script>
+        function convert() {
+            let val = document.getElementById('inputVal').value;
+            let res = val * 2.20462262;
+            document.getElementById('result').innerText = res.toFixed(3);
+        }
+    </script>
+</body>
+</html>

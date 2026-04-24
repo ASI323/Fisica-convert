@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Convert Joules to Calories (J to cal) — Energy</title>
+    <link rel="alternate" hreflang="es" href="https://www.fisicaconvert.com/joules-a-calorias.html" />
+    <link rel="alternate" hreflang="en" href="https://www.fisicaconvert.com/joules-to-calories.html" />
+    <style>body{font-family:sans-serif;padding:20px;max-width:800px;margin:auto}.box{border:2px solid #003366;padding:20px;border-radius:10px;background:#f9f9f9}input{padding:10px;width:120px}</style>
+</head>
+<body>
+    <h1>Convert Joules to Calories</h1>
+    <div class="box">
+        <label>Energy in Joules:</label><br>
+        <input type="number" id="inputVal" placeholder="0" oninput="convert()">
+        <p>Result in <strong>Calories</strong>:</p>
+        <div id="result" style="font-size: 2em; color: #003366;">0.00</div>
+    </div>
+    <h3>Formula: cal = J × 0.2388</h3>
+    <script>
+        function convert() {
+            let val = document.getElementById('inputVal').value;
+            let res = val * 0.2388459;
+            document.getElementById('result').innerText = res.toFixed(4);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><title>Convert Grams to Troy Ounces (g to oz t)</title>
+    <link rel="alternate" hreflang="es" href="https://www.fisicaconvert.com/gramos-a-onza-troy.html" />
+    <link rel="alternate" hreflang="en" href="https://www.fisicaconvert.com/grams-to-troy-ounces.html" />
+    <style>body{font-family:sans-serif;padding:20px;max-width:800px;margin:auto}.box{border:2px solid #003366;padding:20px;border-radius:10px;background:#f9f9f9}input{padding:10px;width:120px}</style>
+</head>
+<body>
+    <h1>Convert Grams to Troy Ounces</h1>
+    <div class="box">
+        <input type="number" id="inputVal" placeholder="0" oninput="convert()">
+        <p>Result in <strong>Troy Ounces</strong>:</p>
+        <div id="result" style="font-size: 2em; color: #003366;">0.00</div>
+    </div>
+    <h3>Formula: oz t = g × 0.03215</h3>
+    <script>function convert(){let val=document.getElementById('inputVal').value; let res=val*0.0321507; document.getElementById('result').innerText=res.toFixed(4);}</script>
+</body>
+</html>

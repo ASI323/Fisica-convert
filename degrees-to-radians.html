@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Convert Degrees to Radians — Trigonometry Tool</title>
+    <link rel="alternate" hreflang="es" href="https://www.fisicaconvert.com/grados-a-radianes.html" />
+    <link rel="alternate" hreflang="en" href="https://www.fisicaconvert.com/degrees-to-radians.html" />
+    <style>body{font-family:sans-serif;padding:20px;max-width:800px;margin:auto}.box{border:2px solid #003366;padding:20px;border-radius:10px;background:#f9f9f9}input{padding:10px;width:120px}</style>
+</head>
+<body>
+    <h1>Convert Degrees to Radians</h1>
+    <div class="box">
+        <label>Angle in Degrees:</label><br>
+        <input type="number" id="inputVal" placeholder="0" oninput="convert()">
+        <p>Result in <strong>Radians</strong>:</p>
+        <div id="result" style="font-size: 2em; color: #003366;">0.00</div>
+    </div>
+    <h3>Formula: rad = deg × (π / 180)</h3>
+    <script>
+        function convert() {
+            let val = document.getElementById('inputVal').value;
+            let res = val * (Math.PI / 180);
+            document.getElementById('result').innerText = res.toFixed(5);
+        }
+    </script>
+</body>
+</html>

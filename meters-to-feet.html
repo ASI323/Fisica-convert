@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Convert Meters to Feet (m to ft) — Length Converter</title>
+    <link rel="alternate" hreflang="es" href="https://www.fisicaconvert.com/metros-a-pies.html" />
+    <link rel="alternate" hreflang="en" href="https://www.fisicaconvert.com/meters-to-feet.html" />
+    <style>body{font-family:sans-serif;padding:20px;max-width:800px;margin:auto}.box{border:2px solid #003366;padding:20px;border-radius:10px;background:#f9f9f9}input{padding:10px;width:120px}</style>
+</head>
+<body>
+    <h1>Convert Meters to Feet</h1>
+    <div class="box">
+        <label>Length in Meters:</label><br>
+        <input type="number" id="inputVal" placeholder="0" oninput="convert()">
+        <p>Result in <strong>Feet</strong>:</p>
+        <div id="result" style="font-size: 2em; color: #003366;">0.00</div>
+    </div>
+    <h3>Formula: ft = m × 3.28084</h3>
+    <script>
+        function convert() {
+            let val = document.getElementById('inputVal').value;
+            let res = val * 3.28084;
+            document.getElementById('result').innerText = res.toFixed(3);
+        }
+    </script>
+</body>
+</html>
