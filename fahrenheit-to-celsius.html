@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convert [Fahrenheit] to [Celsius] — Physics Calculator</title>
+    <meta name="description" content="Free online physics unit converter. Convert [Fahrenheit] to [Celsius] with formula, step-by-step calculation, and reference table.">
+    
+    <link rel="alternate" hreflang="es" href="https://fisicaconvert.com/[pagina-en-español].html" />
+    <link rel="alternate" hreflang="en" href="https://fisicaconvert.com/[page-in-english].html" />
+
+    <style>
+        /* Aquí va tu CSS actual para mantener el mismo diseño */
+        body { font-family: sans-serif; padding: 20px; line-height: 1.6; }
+        .converter-box { border: 2px solid #003366; padding: 20px; border-radius: 10px; max-width: 400px; }
+        input { padding: 10px; width: 80%; margin-bottom: 10px; }
+        .formula-card { background: #f4f4f4; padding: 15px; border-left: 5px solid #003366; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>Convert [Fahrenheit] to [Celsius]</h1>
+
+    <div class="converter-box">
+        <label>Value in [Fahrenheit]:</label><br>
+        <input type="number" id="inputVal" placeholder="Enter value..." oninput="convert()">
+        <p>Result in <strong>[Celsius]</strong>:</p>
+        <div id="result" style="font-size: 1.5em; font-weight: bold; color: #003366;">0.00</div>
+    </div>
+
+    <div class="formula-card">
+        <h3>Conversion Formula</h3>
+        <p>To convert [Fahrenheit] to [Celsius], use the following formula:</p>
+        <code>[Formula Code Example: B = A * factor]</code>
+    </div>
+
+    <h2>How to convert [Fahrenheit] to [Celsius]?</h2>
+    <p>Brief explanation: [Fahrenheit] is a unit of [Category]. To get the result in [Celsius], you simply need to multiply/add...</p>
+
+    <div style="margin: 20px 0; background: #eee; height: 90px; text-align: center; line-height: 90px; color: #999;">
+        Advertisement Space
+    </div>
+
+    <script>
+        function convert() {
+            let val = document.getElementById('inputVal').value;
+            // logic here
+            let res = (val - 32) * 5 / 9; 
+            document.getElementById('result').innerText = res.toFixed(4);
+        }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "How to convert [Fahrenheit] to [Celsius]",
+      "step": [{
+        "@type": "HowToStep",
+        "text": "Identify the value in [Fahrenheit]."
+      }, {
+        "@type": "HowToStep",
+        "text": "Apply the physics formula: (F - 32) * 5/9"
+      }]
+    }
+    </script>
+</body>
+</html>
