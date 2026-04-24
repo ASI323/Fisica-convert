@@ -1,112 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-  <!-- PÁGINA PRINCIPAL -->
   <url>
     <loc>https://fisicaconvert.com/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <lastmod>2026-04-24</lastmod>
+    <priority>1.00</priority>
   </url>
 
-  <!-- LONGITUD -->
-  <url><loc>https://fisicaconvert.com/metros-a-centimetros</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://fisicaconvert.com/metros-a-milimetros</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://fisicaconvert.com/metros-a-kilometros</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://fisicaconvert.com/metros-a-pies</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://fisicaconvert.com/metros-a-pulgadas</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://fisicaconvert.com/metros-a-yardas</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://fisicaconvert.com/kilometros-a-millas</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://fisicaconvert.com/kilometros-a-metros</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://fisicaconvert.com/pies-a-metros</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://fisicaconvert.com/pulgadas-a-centimetros</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://fisicaconvert.com/millas-a-kilometros</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://fisicaconvert.com/fahrenheit-to-celsius.html</loc><priority>0.95</priority></url>
+  <url><loc>https://fisicaconvert.com/pounds-to-kilograms.html</loc><priority>0.90</priority></url>
+  <url><loc>https://fisicaconvert.com/miles-to-kilometers.html</loc><priority>0.90</priority></url>
+  <url><loc>https://fisicaconvert.com/inches-to-centimeters.html</loc><priority>0.90</priority></url>
+  <url><loc>https://fisicaconvert.com/feet-to-meters.html</loc><priority>0.90</priority></url>
+  <url><loc>https://fisicaconvert.com/psi-to-pascal.html</loc><priority>0.90</priority></url>
+  <url><loc>https://fisicaconvert.com/gallons-to-liters.html</loc><priority>0.90</priority></url>
+  <url><loc>https://fisicaconvert.com/ounces-to-grams.html</loc><priority>0.90</priority></url>
+  <url><loc>https://fisicaconvert.com/btu-to-joules.html</loc><priority>0.90</priority></url>
+  <url><loc>https://fisicaconvert.com/horsepower-to-watts.html</loc><priority>0.90</priority></url>
 
-  <!-- MASA -->
-  <url><loc>https://fisicaconvert.com/kilogramos-a-gramos</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://fisicaconvert.com/kilogramos-a-libras</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://fisicaconvert.com/gramos-a-miligramos</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://fisicaconvert.com/gramos-a-kilogramos</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://fisicaconvert.com/libras-a-kilogramos</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://fisicaconvert.com/toneladas-a-kilogramos</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://fisicaconvert.com/kilogramos-a-toneladas</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://fisicaconvert.com/bar-a-psi.html</loc><priority>0.80</priority></url>
+  <url><loc>https://fisicaconvert.com/celsius-a-fahrenheit.html</loc><priority>0.85</priority></url>
+  <url><loc>https://fisicaconvert.com/celsius-a-kelvin.html</loc><priority>0.80</priority></url>
+  <url><loc>https://fisicaconvert.com/grados-a-radianes.html</loc><priority>0.80</priority></url>
+  <url><loc>https://fisicaconvert.com/gramos-a-onza-troy.html</loc><priority>0.80</priority></url>
+  <url><loc>https://fisicaconvert.com/horas-a-segundos.html</loc><priority>0.80</priority></url>
+  <url><loc>https://fisicaconvert.com/joules-a-calorias.html</loc><priority>0.80</priority></url>
+  <url><loc>https://fisicaconvert.com/kilojulios-a-kilocaloria.html</loc><priority>0.80</priority></url>
+  <url><loc>https://fisicaconvert.com/kilometros-a-millas.html</loc><priority>0.80</priority></url>
+  <url><loc>https://fisicaconvert.com/kilos-a-libras.html</loc><priority>0.80</priority></url>
+  <url><loc>https://fisicaconvert.com/kmh-a-ms.html</loc><priority>0.80</priority></url>
+  <url><loc>https://fisicaconvert.com/litros-a-barriles.html</loc><priority>0.80</priority></url>
+  <url><loc>https://fisicaconvert.com/metros-a-pies.html</loc><priority>0.80</priority></url>
+  <url><loc>https://fisicaconvert.com/metros-cuadrados-a-pies.html</loc><priority>0.80</priority></url>
+  <url><loc>https://fisicaconvert.com/metros-cubicos-a-litros.html</loc><priority>0.80</priority></url>
+  <url><loc>https://fisicaconvert.com/mph-a-kmh.html</loc><priority>0.80</priority></url>
+  <url><loc>https://fisicaconvert.com/newton-a-kgf.html</loc><priority>0.80</priority></url>
+  <url><loc>https://fisicaconvert.com/pascal-a-atm.html</loc><priority>0.80</priority></url>
+  <url><loc>https://fisicaconvert.com/tesla-a-gauss.html</loc><priority>0.80</priority></url>
 
-  <!-- TEMPERATURA -->
-  <url><loc>https://fisicaconvert.com/celsius-a-kelvin</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://fisicaconvert.com/celsius-a-fahrenheit</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://fisicaconvert.com/fahrenheit-a-celsius</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://fisicaconvert.com/kelvin-a-celsius</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://fisicaconvert.com/kelvin-a-fahrenheit</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://fisicaconvert.com/como-convertir-celsius-a-fahrenheit.html</loc><priority>0.70</priority></url>
+  <url><loc>https://fisicaconvert.com/como-convertir-km-a-millas.html</loc><priority>0.70</priority></url>
+  <url><loc>https://fisicaconvert.com/como-convertir-metros-a-pies.html</loc><priority>0.70</priority></url>
+  <url><loc>https://fisicaconvert.com/que-es-el-kelvin.html</loc><priority>0.70</priority></url>
+  <url><loc>https://fisicaconvert.com/que-es-el-sistema-internacional.html</loc><priority>0.70</priority></url>
+  <url><loc>https://fisicaconvert.com/que-es-un-newton.html</loc><priority>0.70</priority></url>
+  <url><loc>https://fisicaconvert.com/que-es-un-pascal.html</loc><priority>0.70</priority></url>
+</urlset><?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://fisicaconvert.com/</loc>
+    <lastmod>2026-04-24</lastmod>
+    <priority>1.00</priority>
+  </url>
 
-  <!-- VELOCIDAD -->
-  <url><loc>https://fisicaconvert.com/kmh-a-ms</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://fisicaconvert.com/ms-a-kmh</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://fisicaconvert.com/kmh-a-mph</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://fisicaconvert.com/mph-a-kmh</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://fisicaconvert.com/nudos-a-kmh</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://fisicaconvert.com/fahrenheit-to-celsius.html</loc><priority>0.95</priority></url>
+  <url><loc>https://fisicaconvert.com/pounds-to-kilograms.html</loc><priority>0.90</priority></url>
+  <url><loc>https://fisicaconvert.com/miles-to-kilometers.html</loc><priority>0.90</priority></url>
+  <url><loc>https://fisicaconvert.com/inches-to-centimeters.html</loc><priority>0.90</priority></url>
+  <url><loc>https://fisicaconvert.com/feet-to-meters.html</loc><priority>0.90</priority></url>
+  <url><loc>https://fisicaconvert.com/psi-to-pascal.html</loc><priority>0.90</priority></url>
+  <url><loc>https://fisicaconvert.com/gallons-to-liters.html</loc><priority>0.90</priority></url>
+  <url><loc>https://fisicaconvert.com/ounces-to-grams.html</loc><priority>0.90</priority></url>
+  <url><loc>https://fisicaconvert.com/btu-to-joules.html</loc><priority>0.90</priority></url>
+  <url><loc>https://fisicaconvert.com/horsepower-to-watts.html</loc><priority>0.90</priority></url>
 
-  <!-- FUERZA -->
-  <url><loc>https://fisicaconvert.com/newton-a-kilogramo-fuerza</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://fisicaconvert.com/newton-a-libra-fuerza</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://fisicaconvert.com/kilogramo-fuerza-a-newton</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://fisicaconvert.com/dina-a-newton</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://fisicaconvert.com/newton-a-dina</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://fisicaconvert.com/bar-a-psi.html</loc><priority>0.80</priority></url>
+  <url><loc>https://fisicaconvert.com/celsius-a-fahrenheit.html</loc><priority>0.85</priority></url>
+  <url><loc>https://fisicaconvert.com/celsius-a-kelvin.html</loc><priority>0.80</priority></url>
+  <url><loc>https://fisicaconvert.com/grados-a-radianes.html</loc><priority>0.80</priority></url>
+  <url><loc>https://fisicaconvert.com/gramos-a-onza-troy.html</loc><priority>0.80</priority></url>
+  <url><loc>https://fisicaconvert.com/horas-a-segundos.html</loc><priority>0.80</priority></url>
+  <url><loc>https://fisicaconvert.com/joules-a-calorias.html</loc><priority>0.80</priority></url>
+  <url><loc>https://fisicaconvert.com/kilojulios-a-kilocaloria.html</loc><priority>0.80</priority></url>
+  <url><loc>https://fisicaconvert.com/kilometros-a-millas.html</loc><priority>0.80</priority></url>
+  <url><loc>https://fisicaconvert.com/kilos-a-libras.html</loc><priority>0.80</priority></url>
+  <url><loc>https://fisicaconvert.com/kmh-a-ms.html</loc><priority>0.80</priority></url>
+  <url><loc>https://fisicaconvert.com/litros-a-barriles.html</loc><priority>0.80</priority></url>
+  <url><loc>https://fisicaconvert.com/metros-a-pies.html</loc><priority>0.80</priority></url>
+  <url><loc>https://fisicaconvert.com/metros-cuadrados-a-pies.html</loc><priority>0.80</priority></url>
+  <url><loc>https://fisicaconvert.com/metros-cubicos-a-litros.html</loc><priority>0.80</priority></url>
+  <url><loc>https://fisicaconvert.com/mph-a-kmh.html</loc><priority>0.80</priority></url>
+  <url><loc>https://fisicaconvert.com/newton-a-kgf.html</loc><priority>0.80</priority></url>
+  <url><loc>https://fisicaconvert.com/pascal-a-atm.html</loc><priority>0.80</priority></url>
+  <url><loc>https://fisicaconvert.com/tesla-a-gauss.html</loc><priority>0.80</priority></url>
 
-  <!-- PRESIÓN -->
-  <url><loc>https://fisicaconvert.com/pascal-a-atm</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://fisicaconvert.com/pascal-a-bar</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://fisicaconvert.com/pascal-a-mmhg</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://fisicaconvert.com/atm-a-pascal</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://fisicaconvert.com/bar-a-pascal</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://fisicaconvert.com/atm-a-bar</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://fisicaconvert.com/psi-a-pascal</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://fisicaconvert.com/pascal-a-psi</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://fisicaconvert.com/mmhg-a-pascal</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://fisicaconvert.com/bar-a-atm</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-
-  <!-- ENERGÍA -->
-  <url><loc>https://fisicaconvert.com/joules-a-calorias</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://fisicaconvert.com/calorias-a-joules</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://fisicaconvert.com/joules-a-kilocalorías</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://fisicaconvert.com/joules-a-electronvoltios</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://fisicaconvert.com/joules-a-kwh</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://fisicaconvert.com/kwh-a-joules</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-
-  <!-- TIEMPO -->
-  <url><loc>https://fisicaconvert.com/segundos-a-minutos</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://fisicaconvert.com/minutos-a-horas</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://fisicaconvert.com/horas-a-segundos</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://fisicaconvert.com/dias-a-horas</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://fisicaconvert.com/horas-a-minutos</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://fisicaconvert.com/segundos-a-horas</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-
-  <!-- ÁREA -->
-  <url><loc>https://fisicaconvert.com/m2-a-cm2</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://fisicaconvert.com/m2-a-km2</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://fisicaconvert.com/hectareas-a-m2</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://fisicaconvert.com/m2-a-hectareas</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://fisicaconvert.com/km2-a-m2</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://fisicaconvert.com/pies2-a-m2</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://fisicaconvert.com/m2-a-pies2</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-
-  <!-- VOLUMEN -->
-  <url><loc>https://fisicaconvert.com/litros-a-mililitros</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://fisicaconvert.com/mililitros-a-litros</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://fisicaconvert.com/litros-a-galones</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://fisicaconvert.com/galones-a-litros</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://fisicaconvert.com/m3-a-litros</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://fisicaconvert.com/litros-a-m3</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://fisicaconvert.com/cm3-a-litros</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-
-  <!-- ÁNGULO -->
-  <url><loc>https://fisicaconvert.com/grados-a-radianes</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://fisicaconvert.com/radianes-a-grados</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://fisicaconvert.com/grados-a-gradianes</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://fisicaconvert.com/radianes-a-gradianes</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-
-  <!-- CAMPO MAGNÉTICO -->
-  <url><loc>https://fisicaconvert.com/tesla-a-gauss</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://fisicaconvert.com/gauss-a-tesla</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://fisicaconvert.com/tesla-a-militesla</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://fisicaconvert.com/tesla-a-microtesla</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-
+  <url><loc>https://fisicaconvert.com/como-convertir-celsius-a-fahrenheit.html</loc><priority>0.70</priority></url>
+  <url><loc>https://fisicaconvert.com/como-convertir-km-a-millas.html</loc><priority>0.70</priority></url>
+  <url><loc>https://fisicaconvert.com/como-convertir-metros-a-pies.html</loc><priority>0.70</priority></url>
+  <url><loc>https://fisicaconvert.com/que-es-el-kelvin.html</loc><priority>0.70</priority></url>
+  <url><loc>https://fisicaconvert.com/que-es-el-sistema-internacional.html</loc><priority>0.70</priority></url>
+  <url><loc>https://fisicaconvert.com/que-es-un-newton.html</loc><priority>0.70</priority></url>
+  <url><loc>https://fisicaconvert.com/que-es-un-pascal.html</loc><priority>0.70</priority></url>
 </urlset>
