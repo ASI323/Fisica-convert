@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convert Horsepower to Watts — Power Converter</title>
+    <link rel="alternate" hreflang="en" href="https://fisicaconvert.com/horsepower-to-watts.html" />
+    <style>body { font-family: sans-serif; padding: 20px; line-height: 1.6; max-width: 800px; margin: auto; } .box { border: 2px solid #003366; padding: 20px; border-radius: 10px; background: #f9f9f9; } input { padding: 10px; width: 100px; font-size: 1.2em; }</style>
+</head>
+<body>
+    <h1>Convert Horsepower (hp) to Watts (W)</h1>
+    <div class="box">
+        <label>Power in hp:</label><br>
+        <input type="number" id="inputVal" placeholder="0" oninput="convert()">
+        <p>Result in <strong>Watts</strong>:</p>
+        <div id="result" style="font-size: 2em; color: #003366;">0.00</div>
+    </div>
+    <h3>Formula: W = hp × 745.7</h3>
+    <script>
+        function convert() {
+            let val = document.getElementById('inputVal').value;
+            let res = val * 745.7;
+            document.getElementById('result').innerText = res.toFixed(2);
+        }
+    </script>
+</body>
+</html>

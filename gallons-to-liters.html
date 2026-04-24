@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convert Gallons to Liters — Volume Converter</title>
+    <meta name="description" content="Convert US Gallons to Liters easily. Free online physics calculator with formula and conversion steps.">
+    <link rel="alternate" hreflang="en" href="https://fisicaconvert.com/gallons-to-liters.html" />
+    <style>body { font-family: sans-serif; padding: 20px; line-height: 1.6; max-width: 800px; margin: auto; } .box { border: 2px solid #003366; padding: 20px; border-radius: 10px; background: #f9f9f9; } input { padding: 10px; width: 100px; font-size: 1.2em; }</style>
+</head>
+<body>
+    <h1>Convert US Gallons to Liters (L)</h1>
+    <div class="box">
+        <label>Volume in Gallons:</label><br>
+        <input type="number" id="inputVal" placeholder="0" oninput="convert()">
+        <p>Result in <strong>Liters</strong>:</p>
+        <div id="result" style="font-size: 2em; color: #003366;">0.00</div>
+    </div>
+    <h3>Formula: L = Gallons × 3.78541</h3>
+    <script>
+        function convert() {
+            let val = document.getElementById('inputVal').value;
+            let res = val * 3.78541;
+            document.getElementById('result').innerText = res.toFixed(4);
+        }
+    </script>
+</body>
+</html>

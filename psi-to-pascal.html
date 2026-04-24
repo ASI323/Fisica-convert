@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convert PSI to Pascal — Pressure Calculator</title>
+    <meta name="description" content="Free online converter for PSI to Pascal. Includes formula, step-by-step physics calculation and reference table.">
+    <link rel="alternate" hreflang="en" href="https://fisicaconvert.com/psi-to-pascal.html" />
+    <link rel="alternate" hreflang="x-default" href="https://fisicaconvert.com/psi-to-pascal.html" />
+    <style>body { font-family: sans-serif; padding: 20px; line-height: 1.6; max-width: 800px; margin: auto; } .box { border: 2px solid #003366; padding: 20px; border-radius: 10px; background: #f9f9f9; } input { padding: 10px; width: 100px; font-size: 1.2em; }</style>
+</head>
+<body>
+    <h1>Convert PSI to Pascal (Pa)</h1>
+    <div class="box">
+        <label>Pressure in PSI:</label><br>
+        <input type="number" id="inputVal" placeholder="0" oninput="convert()">
+        <p>Result in <strong>Pascal</strong>:</p>
+        <div id="result" style="font-size: 2em; color: #003366;">0.00</div>
+    </div>
+    <h3>Formula: Pa = PSI × 6,894.76</h3>
+    <p>PSI (Pound-force per square inch) is commonly used in the US, while Pascal is the SI unit for pressure.</p>
+    <script>
+        function convert() {
+            let val = document.getElementById('inputVal').value;
+            let res = val * 6894.76;
+            document.getElementById('result').innerText = res.toLocaleString('en-US', {minimumFractionDigits: 2});
+        }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "How to convert PSI to Pascal",
+      "step": [{"@type": "HowToStep", "text": "Input the pressure in PSI."}, {"@type": "HowToStep", "text": "Multiply by 6894.76 to get Pascal."}]
+    }
+    </script>
+</body>
+</html>

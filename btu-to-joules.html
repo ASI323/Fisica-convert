@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convert BTU to Joules — Energy Physics Tool</title>
+    <link rel="alternate" hreflang="en" href="https://fisicaconvert.com/btu-to-joules.html" />
+    <style>body { font-family: sans-serif; padding: 20px; line-height: 1.6; max-width: 800px; margin: auto; } .box { border: 2px solid #003366; padding: 20px; border-radius: 10px; background: #f9f9f9; } input { padding: 10px; width: 100px; font-size: 1.2em; }</style>
+</head>
+<body>
+    <h1>Convert British Thermal Units (BTU) to Joules (J)</h1>
+    <div class="box">
+        <label>Energy in BTU:</label><br>
+        <input type="number" id="inputVal" placeholder="0" oninput="convert()">
+        <p>Result in <strong>Joules</strong>:</p>
+        <div id="result" style="font-size: 2em; color: #003366;">0.00</div>
+    </div>
+    <h3>Formula: J = BTU × 1,055.06</h3>
+    <script>
+        function convert() {
+            let val = document.getElementById('inputVal').value;
+            let res = val * 1055.06;
+            document.getElementById('result').innerText = res.toLocaleString('en-US');
+        }
+    </script>
+</body>
+</html>
